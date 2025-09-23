@@ -32,7 +32,7 @@ a:active {
   color: darkviolet;
 }
 
-#spacer {
+.spacer {
   background-color: transparent;
   display: flex;
   width: 100%;
