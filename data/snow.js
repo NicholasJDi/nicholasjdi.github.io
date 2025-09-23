@@ -9,7 +9,7 @@
   let numberOfSnowflakes = 75;
 
   // Flag to reset the position of the snowflakes
-  let resetPosition = false;
+  let resetPosition = true;
 
   // Handle accessibility
   let enableAnimations = false;
