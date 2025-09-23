@@ -2,7 +2,8 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    display: none;
+    display: block;
+    z-index: -1;
   }
 
   .snowflake {
