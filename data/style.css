@@ -11,9 +11,10 @@ body {
 
 div {
 	background-color: rgba(0,0,0,0.5);
-	border: 5px outset rgba(169, 169, 169, 0.7);
+	border: 5px ridge rgba(169, 169, 169, 0.7);
 	padding-left: 20px;
 	padding-right: 20px;
+	border-radius: 3px;
 }
 
 a:link{
@@ -47,9 +48,11 @@ a:active {
 	display: flex !important;
 	width: 70% !important;
 	height: 100% !important;
-	border: 2px outset rgba(203, 166, 247, 0.5) !important;
+	border: 2px solid rgba(203, 166, 247, 0.5) !important;
 	padding: 10px !important;
 	margin-left: 15% !important;
 	margin-right: 15% !important;
+	margin-top: 20px;
 	justify-content: center !important;
+	border-radius: 5px;
 }
