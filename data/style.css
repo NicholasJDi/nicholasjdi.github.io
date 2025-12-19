@@ -43,7 +43,11 @@ a:active {
 }
 
 .giscus {
-  border: unset;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  background-color: rgba(17, 17, 27, 0.5);
+  display: flex;
+  width: 75%;
+  height: 100%;
+  border: 2px outset rgba(203, 166, 247, 0.5);
+  padding: 10px;
+  justify-content: center;
 }
