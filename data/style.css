@@ -45,14 +45,24 @@ a:active {
 
 .giscus {
 	background-color: rgba(17, 17, 27, 0.5) !important;
-	display: flex !important;
 	width: 70% !important;
 	height: 100% !important;
 	border: 2px solid rgba(203, 166, 247, 0.5) !important;
 	padding: 10px !important;
 	margin-left: 15% !important;
 	margin-right: 15% !important;
-	margin-top: 20px;
-	justify-content: center !important;
-	border-radius: 5px;
+	border-radius: 5px !important;
+}
+
+@media only screen and (max-width: 768px) {
+	.giscus {
+		background-color: rgba(17, 17, 27, 0.5) !important;
+		width: 100% !important;
+		height: 100% !important;
+		border: 2px solid rgba(203, 166, 247, 0.5) !important;
+		padding: 10px !important;
+		margin-left: 0% !important;
+		margin-right: 0% !important;
+		border-radius: 5px !important;
+	}
 }
