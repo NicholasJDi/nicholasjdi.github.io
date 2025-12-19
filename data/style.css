@@ -41,3 +41,9 @@ a:active {
   padding: 10px;
   justify-content: center;
 }
+
+.giscus {
+  background-color: unset;
+  border: unset;
+  padding: unset;
+}
