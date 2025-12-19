@@ -1,53 +1,55 @@
 body {
-  background-color: black;
-  background-image: url('/data/Background.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100vw 100vh;
-  color: white;
-  font-family: Verdana;
-  margin: 50px;
+	background-color: black;
+	background-image: url('/data/Background.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100vw 100vh;
+	color: white;
+	font-family: Verdana;
+	margin: 50px;
 }
 
 div {
-  background-color: rgba(0,0,0,0.5);
-  border: 5px outset rgba(169, 169, 169, 0.7);
-  padding-left: 20px;
-  padding-right: 20px;
+	background-color: rgba(0,0,0,0.5);
+	border: 5px outset rgba(169, 169, 169, 0.7);
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 a:link{
-  color: rebeccapurple;
+	color: rebeccapurple;
 }
 
 a:visited {
-  color: rebeccapurple;
+	color: rebeccapurple;
 }
 
 a:hover {
-  color: darkviolet;
+	color: darkviolet;
 }
 
 a:active {
-  color: darkviolet;
+	color: darkviolet;
 }
 
 .spacer {
-  background-color: transparent;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  border: 0px;
-  padding: 10px;
-  justify-content: center;
+	background-color: transparent;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	border: 0px;
+	padding: 10px;
+	justify-content: center;
 }
 
 .giscus {
-  background-color: rgba(17, 17, 27, 0.5);
-  display: flex;
-  width: 75%;
-  height: 100%;
-  border: 2px outset rgba(203, 166, 247, 0.5);
-  padding: 10px;
-  justify-content: center;
+	background-color: rgba(17, 17, 27, 0.5) !important;
+	display: flex !important;
+	width: 70% !important;
+	height: 100% !important;
+	border: 2px outset rgba(203, 166, 247, 0.5) !important;
+	padding: 5px !important;
+	margin-left: 15% !important;
+	margin-right: 15% !important;
+	justify-content: center !important;
 }
