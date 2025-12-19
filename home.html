@@ -66,7 +66,7 @@ I Am By No Means Good At What I Do But I Try To Do My Best.</p>
 		data-loading="lazy"
 		crossorigin="anonymous"
 		async>
-		const targetDiv = document.querySelector('giscus');
+		const targetDiv = document.getElementsByClassName('giscus')[0];
 		if (targetDiv) {
 			targetDiv.id = 'comments';
 		}
