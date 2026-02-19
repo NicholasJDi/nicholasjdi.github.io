@@ -50,18 +50,22 @@ a:active {
 	background-color: rgb(50, 50, 50);
 	border-right: 2px solid rgb(100, 100, 100);
 	z-index: 999;
-	transform: translateX(0);
-	transition: transform .25s ease;
+	transition: left .25s ease;
 	padding: 1rem;
 }
 
 .content{
 	margin-left: 20vw;
 	padding: 1rem;
+	transition: margin-left .25s ease;
 }
 
 @media only screen and (max-width:800px) {
-	.sidebar{ transform:translateX(-100%); }
-	.sidebar.open{ transform:translateX(0); }
-	.content{ margin-left:0; }
+	.sidebar{ left: -20vw; }
+	.sidebar.open{ left: 0; }
+	.content{ margin-left: 0; }
+}
+
+@media only prefers-reduced-motion {
+	.sidebar, .content { transition: none; }
 }
