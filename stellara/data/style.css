@@ -1,0 +1,67 @@
+/* Global reset: include padding/border in sizing and remove default gaps */
+:root{ --sidebar-width:20vw; }
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; padding: 0; }
+
+body {
+	background-color: rgb(40, 40, 40);
+	color: white;
+	font-family: Verdana;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	left: 0;
+}
+
+a:link{
+	color: rebeccapurple;
+}
+
+a:visited {
+	color: rebeccapurple;
+}
+
+a:hover {
+	color: darkviolet;
+}
+
+a:active {
+	color: darkviolet;
+}
+
+.list-item {
+	background-color: rgb(60, 60, 60);
+	border: 2px solid rgb(120, 120, 120);
+	border-radius: 5px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.sidebar {
+	position: fixed;
+	box-sizing: border-box;
+	top: 0;
+	left: 0;
+	width: 20vw;
+	height: 100vh;
+	background-color: rgb(50, 50, 50);
+	border-right: 2px solid rgb(100, 100, 100);
+	z-index: 999;
+	transform: translateX(0);
+	transition: transform .25s ease;
+	padding: 1rem;
+}
+
+.content{
+	margin-left: 20vw;
+	padding: 1rem;
+}
+
+@media only screen and (max-width:800px) {
+	.sidebar{ transform:translateX(-100%); }
+	.sidebar.open{ transform:translateX(0); }
+	.content{ margin-left:0; }
+}

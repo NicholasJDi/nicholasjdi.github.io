@@ -1,0 +1,53 @@
+[
+	{
+		"title":"single title",
+		"artists":["artist1"],
+		"type":"single",
+		"date":"2025-03-14",
+		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/artist1%20-%20single%20title.mp3",
+		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/artist1%20-%20single%20title.mp3",
+		"art":"https://nicholasjdi.github.io/stellara/data/music/art/artist1%20-%20single%20title.png"
+	},
+	{
+		"title":"album title",
+		"album":"this be an album",
+		"artists":["artist1"],
+		"contributers":["contri1","contri2"],
+		"type":"album",
+		"date":"2024-07-16",
+		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/album%20title.mp3",
+		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/album%20title.mp3",
+		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20album.png"
+	},
+	{
+		"title":"ep title",
+		"album":"this be an ep",
+		"artists":["artist1","artist2"],
+		"type":"ep",
+		"date":"2025-11-07",
+		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/artist1%20-%20ep%20title.mp3",
+		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/artist1%20-%20ep%20title.mp3",
+		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20ep.png"
+	},
+	{
+		"title":"remix title",
+		"artists":["artist1"],
+		"contributers":["contri1"],
+		"original_artists":["oriartist1"],
+		"type":"remix",
+		"date":"2024-01-27",
+		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/artist1%20-%20remix%20title.mp3",
+		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/artist1%20-%20remix%20title.mp3",
+		"art":"https://nicholasjdi.github.io/stellara/data/music/art/remix%20title.png"
+	},
+	{
+		"title":"ep title but older",
+		"album":"this be an ep",
+		"artists":["artist1"],
+		"type":"ep",
+		"date":"2023-6-14",
+		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/artist1%20-%20ep%20title%20but%20older.mp3",
+		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/artist1%20-%20ep%20title%20but%20older.mp3",
+		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20ep.png"
+	}
+]
