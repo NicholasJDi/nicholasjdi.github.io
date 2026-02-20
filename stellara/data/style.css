@@ -7,10 +7,6 @@ body {
 	background-color: rgb(40, 40, 40);
 	color: white;
 	font-family: Verdana;
-	margin: 0;
-	padding: 0;
-	top: 0;
-	left: 0;
 }
 
 a:link{
@@ -33,8 +29,6 @@ a:active {
 	background-color: rgb(50, 50, 50);
 	border-right: 2px solid rgb(100, 100, 100);
 	padding: 1rem;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
 }
 
 .topbar {
@@ -55,8 +49,6 @@ a:active {
 
 .content{
 	padding: 1rem;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
 	margin-top: var(--topbar-size);
 }
 
