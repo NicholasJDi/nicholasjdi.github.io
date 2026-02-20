@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 	} else if (saved === 'true') {
 		sidebar.classList.add('open');
 	}
-	console.log(saved);	
+	console.log(saved);
 
 	// Allow animations after initial state is applied
 	setTimeout(() => { sidebar.classList.remove('no-anim'); }, 300);

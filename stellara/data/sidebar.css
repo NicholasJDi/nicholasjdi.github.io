@@ -1,7 +1,7 @@
 :root{
 	/* root variables */
 	--sidebar-size: 20vw; /* the width of the sidebar */
-    --topbar-size: 3rem; /* the height of the topbar */
+	--topbar-size: 3rem; /* the height of the topbar */
 }
 
 .sidebar {
@@ -43,19 +43,19 @@
 }
 
 @keyframes slide-in {
-    from {
+	from {
 		left: calc(var(--sidebar-size) * -1);
 	}
-    to {
+	to {
 		left: 0;
 	}
 }
 
 @keyframes slide-out {
-    from {
+	from {
 		left: 0;
 	}
-    to {
+	to {
 		left: calc(var(--sidebar-size) * -1);
 	}
 }
@@ -70,10 +70,10 @@
 }
 
 @keyframes size-out {
-    from {
+	from {
 		margin-left: var(--sidebar-size);
 	}
-    to {
+	to {
 		margin-left: 0;
 	}
 }

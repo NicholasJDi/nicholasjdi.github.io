@@ -1,6 +1,6 @@
 :root{
 	/* root variables */
-    --topbar-size: 3rem; /* the height of the topbar */
+	--topbar-size: 3rem; /* the height of the topbar */
 }
 
 body {

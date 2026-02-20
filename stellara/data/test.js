@@ -24,7 +24,7 @@ function sortDataBySearch(data, searchScheme, inputText = "", includeWeight = fa
 					const tokenWeight = parseFloat(searchItem.token_weight ?? 0);
 					const positionWeight = parseFloat(searchItem.position_weight ?? 0);
 					let totalWeight = 0;
-					
+
 					switch (searchItem.type) {
 						case "contains":
 							for (const token of inputTokens) {
@@ -96,7 +96,7 @@ function sortData(data, sortMode) {
 		const newGroups = [];
 		const groupMap = {};
 		let i = 0;
-		
+
 		for (const group of groups) {
 			switch (rule.type) {
 				case "sort": {
@@ -174,7 +174,7 @@ function sortData(data, sortMode) {
 				}
 			}
 		}
-		
+
 		if (rule.type === "group" && rule.reverse) {
 			for (const item of Object.keys(groupMap)) {
 				newGroups[groupMap[item]].reverse();
