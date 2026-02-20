@@ -7,13 +7,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 	// Restore saved state (if any)
 	const saved = localStorage.getItem('sidebar-open');
-	if (!saved) {
-		// No saved state, default to open
-		sidebar.classList.add('open');
-	} else if (saved === 'true') {
+	if (saved !== 'false') {
 		sidebar.classList.add('open');
 	}
-	console.log(saved);
 
 	// Allow animations after initial state is applied
 	setTimeout(() => { sidebar.classList.remove('no-anim'); }, 300);
