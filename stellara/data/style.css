@@ -1,7 +1,7 @@
-/* Global reset: include padding/border in sizing and remove default gaps */
-:root{ --sidebar-width:20vw; }
-*, *::before, *::after { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; padding: 0; }
+:root{
+	/* root variables */
+	--sidebar-size: 20vw; /* the width of the sidebar */
+}
 
 body {
 	background-color: rgb(40, 40, 40);
@@ -45,27 +45,113 @@ a:active {
 	box-sizing: border-box;
 	top: 0;
 	left: 0;
-	width: 20vw;
+	width: var(--sidebar-size);
 	height: 100vh;
 	background-color: rgb(50, 50, 50);
 	border-right: 2px solid rgb(100, 100, 100);
 	z-index: 999;
-	transition: left .25s ease;
 	padding: 1rem;
+}
+
+.sidebar.open {
+	animation: slide-in 0.3s forwards;
+}
+
+.sidebar:not(.open) {
+	animation: slide-out 0.3s forwards;
+}
+
+.sidebar.no-anim {
+	animation-duration: 0s !important;
 }
 
 .content{
-	margin-left: 20vw;
+	margin-left: var(--sidebar-size);
 	padding: 1rem;
-	transition: margin-left .25s ease;
 }
 
-@media only screen and (max-width:800px) {
-	.sidebar{ left: -20vw; }
-	.sidebar.open{ left: 0; }
+.sidebar.open ~ .content{
+	animation: size-in 0.3s forwards;
+}
+
+.sidebar:not(.open) ~ .content{
+	animation: size-out 0.3s forwards;
+}
+
+.sidebar.no-anim ~ .content {
+		animation-duration: 0s !important;
+}
+
+@keyframes slide-in {
+    from {
+		left: calc(var(--sidebar-size) * -1);
+	}
+    to {
+		left: 0;
+	}
+}
+
+@keyframes slide-out {
+    from {
+		left: 0;
+	}
+    to {
+		left: calc(var(--sidebar-size) * -1);
+	}
+}
+
+@keyframes size-in {
+	from {
+		margin-left: 0;
+	}
+	to {
+		margin-left: var(--sidebar-size);
+	}
+}
+
+@keyframes size-out {
+    from {
+		margin-left: var(--sidebar-size);
+	}
+    to {
+		margin-left: 0;
+	}
+}
+
+@media (max-width:800px) {
+	.sidebar{ left: 0; }
+	.content{ margin-left: var(--sidebar-size); }
+	.sidebar.open{
+		left: calc(100vw * -1);
+		animation: slide-out 0.3s forwards;
+	}
+	.sidebar:not(.open) { animation: slide-in 0.3s forwards; }
+	.sidebar.open ~ .content { animation: size-out 0.3s forwards; }
+	.sidebar:not(.open) ~ .content { animation: size-in 0.3s forwards; }
+}
+
+@media (max-width:500px) {
+	:root{
+		--sidebar-size: 100vw;
+	}
+	.sidebar{ left: 0; }
 	.content{ margin-left: 0; }
+	.sidebar.open{
+		left: calc(100vw * -1);
+		animation: slide-out 0.3s forwards;
+	}
+	.sidebar:not(.open) { animation: slide-in 0.3s forwards; }
+	.sidebar.open ~ .content { display: block;
+	animation: none; }
+	.sidebar:not(.open) ~ .content { display: none;
+	animation: none; }
 }
 
-@media only prefers-reduced-motion {
-	.sidebar, .content { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+	.sidebar.open {
+		animation-duration: 0s;
+	}
+	.sidebar:not(.open) {
+		animation-duration: 0s;
+	}
 }
