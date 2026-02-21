@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 	}
 
 	// Allow animations after initial state is applied
-	setTimeout(() => { sidebar.classList.remove('no-anim'); }, 300);
+	setTimeout(() => { sidebar.classList.remove('no-anim'); }, 1000);
 
 	btn.addEventListener('click', ()=>{
 		const isOpen = sidebar.classList.toggle('open');
