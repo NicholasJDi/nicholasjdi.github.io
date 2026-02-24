@@ -17,15 +17,12 @@ body {
 a:link{
 	color: rebeccapurple;
 }
-
 a:visited {
 	color: rebeccapurple;
 }
-
 a:hover {
 	color: darkviolet;
 }
-
 a:active {
 	color: darkviolet;
 }
@@ -44,16 +41,42 @@ a:active {
 .sidebar {
 	background-color: rgb(50, 50, 50);
 	border-right: 2px solid rgb(100, 100, 100);
-	padding: 1rem;
-	padding-right: 0.5rem;
-	padding-left: 0.5rem;
+	padding: 0.5em;
+	padding-top: 1em;
 	overflow-y: auto;
-	scrollbar-gutter: stable both-edges;
+	overflow-x: hidden;
 }
 
 .content{
 	padding: 1rem;
 	overflow: auto;
+}
+
+.sidebar-toggle {
+	background-color: transparent;
+	border: none;
+	color: white;
+	font-size: 1.5rem;
+	cursor: pointer;
+	transform: translateX(-0.5rem);
+}
+
+.sidebar-content {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	width: 12em;
+	transform-origin: top left;
+	transform: scale(calc((var(--sidebar-size) - 1em - 2px) / 12em));
+	transform-box: fill-box;
+}
+
+.sidebar-title {
+	text-align: center;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 .list-item {
@@ -67,21 +90,26 @@ a:active {
 	margin-right: 5px;
 }
 
-.sidebar-toggle {
-	background-color: transparent;
-	border: none;
-	color: white;
-	font-size: 1.5rem;
-	cursor: pointer;
+.page-link {
+	text-decoration: none;
+}
+.page-link:link {
+	color: white
+}
+.page-link:visited {
+	color: white
+}
+.page-link:hover {
+	color: lightblue;
+}
+.page-link:active {
+	color: lightskyblue;
 }
 
-.spaced-list {
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	gap: 1rem;
-	max-width: 100%;
-	min-width: 100%;
-	min-height: 100%;
+.page-index-item {
+	margin-bottom: auto;
+	text-align: left;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }

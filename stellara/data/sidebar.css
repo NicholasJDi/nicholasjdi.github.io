@@ -112,6 +112,7 @@
 	:root{
 		--sidebar-size: 100vw;
 	}
+	.sidebar{ border: none !important; }
 	.content{ left: 0; }
 	.sidebar.open ~ .content { animation: none; }
 	.sidebar:not(.open) ~ .content { animation: none; }
