@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
 		}
 	} else if (sidebarParam === 'open') {
 		// Force the sidebar to be open
-		if (document.documentElement.clientWidth <= 800) {
+		if (document.documentElement.clientWidth > 800) {
 			sidebar.classList.add('open');
 		} else {
 			sidebar.classList.remove('open');
 		}
 	} else {
 		// Force the sidebar to be closed
-		if (document.documentElement.clientWidth <= 800) {
+		if (document.documentElement.clientWidth > 800) {
 			sidebar.classList.remove('open');
 		} else {
 			sidebar.classList.add('open');
