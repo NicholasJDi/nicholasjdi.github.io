@@ -1,3 +1,7 @@
+:root {
+	--sidebar-content-scale: 12rem;
+}
+
 ::-webkit-scrollbar-track {
   background: rgb(50, 50, 50);
 }
@@ -67,9 +71,9 @@ a:active {
 	display: flex;
 	flex-direction: column;
 	gap: 1em;
-	width: 12em;
+	width: var(--sidebar-content-scale);
 	transform-origin: top left;
-	transform: scale(calc((var(--sidebar-size) - 1em - 2px) / 12em));
+	transform: scale(calc((var(--sidebar-size) - 1em - 2px) / var(--sidebar-content-scale)));
 }
 
 .sidebar-title {
