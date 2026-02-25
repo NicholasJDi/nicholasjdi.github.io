@@ -1,19 +1,18 @@
 document.addEventListener('DOMContentLoaded', ()=>{
-	const btn = document.querySelector('.sidebar-toggle');
 	const sidebar = document.querySelector('.sidebar');
-	if(!btn || !sidebar) return;
+	if (!sidebar) return;
+	const btn = document.querySelector('.sidebar-toggle');
+	const searchParams = new URLSearchParams(window.location.search);
+	const sidebarParam = searchParams.get('sidebar');
+	let isOpen = true;
+	
+	
+	
 	// Prevent animation on initial load
 	sidebar.classList.add('no-anim');
-
-
-	const queryString = window.location.search;
-	const searchParams = new URLSearchParams(queryString);
-	const sidebarParam = searchParams.get('sidebar');
-
 	if (sidebarParam === null) {
 		// Restore saved state (if any)
-		const saved = localStorage.getItem('sidebar-open');
-		if (saved !== 'false') {
+		if (localStorage.getItem('sidebar-open') !== 'false') {
 			sidebar.classList.add('open');
 		} else {
 			sidebar.classList.remove('open');
@@ -34,11 +33,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
 		}
 	}
 
+	// Save initial state
+	isOpen = sidebar.classList.contains('open');
+	localStorage.setItem('sidebar-open', isOpen ? 'true' : 'false');
+
 	// Allow animations after initial state is applied
 	setTimeout(() => { sidebar.classList.remove('no-anim'); }, 1000);
 
+	if (!btn) return;
+	// Toggle sidebar on button click and save state
 	btn.addEventListener('click', ()=>{
-		const isOpen = sidebar.classList.toggle('open');
+		isOpen = sidebar.classList.toggle('open');
 		sidebar.classList.remove('no-anim');
 		localStorage.setItem('sidebar-open', isOpen ? 'true' : 'false');
 	});
