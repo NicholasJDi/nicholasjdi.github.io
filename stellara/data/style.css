@@ -45,6 +45,7 @@ a:active {
 	padding-top: 1em;
 	overflow-y: auto;
 	overflow-x: hidden;
+	scrollbar-gutter: stable both-edges;
 }
 
 .content{
@@ -66,7 +67,7 @@ a:active {
 	display: flex;
 	flex-direction: column;
 	gap: 1em;
-	font-size: calc(var(--sidebar-size) / 10);
+	font-size: calc(var(--sidebar-size) / 12);
 }
 
 .sidebar-title {
