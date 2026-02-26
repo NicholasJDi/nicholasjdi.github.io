@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
+
 ::-webkit-scrollbar-track {
   background: rgb(50, 50, 50);
 }
@@ -8,23 +10,23 @@
 body {
 	background-color: rgb(40, 40, 40);
 	color: white;
-	font-family: Verdana;
+	font-family: Verdana, serif;
 	scrollbar-color: rgb(70, 70, 70) rgb(50, 50, 50);
 	margin: 0;
 	padding: 0;
 }
 
 a:link{
-	color: rebeccapurple;
+	color: lightblue;
 }
 a:visited {
-	color: rebeccapurple;
+	color: lightblue;
 }
 a:hover {
-	color: darkviolet;
+	color: lightskyblue;
 }
 a:active {
-	color: darkviolet;
+	color: lightskyblue;
 }
 
 .topbar {
@@ -49,8 +51,10 @@ a:active {
 }
 
 .content{
-	padding: 1rem;
+	font-family: 'Jersey 25', Verdana, serif;
+	padding: 2rem;
 	overflow: auto;
+	scrollbar-gutter: stable both-edges;
 }
 
 .sidebar-toggle {
@@ -69,21 +73,11 @@ a:active {
 	font-size: calc(var(--sidebar-size) / 12);
 }
 
-.sidebar-title {
+.title {
 	text-align: center;
+	font-family: serif;
 	margin: 0;
 	padding: 0;
-}
-
-.list-item {
-	background-color: rgb(60, 60, 60);
-	border: 2px solid rgb(120, 120, 120);
-	border-radius: 5px;
-	padding: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	margin-left: 5px;
-	margin-right: 5px;
 }
 
 .page-link {
@@ -106,4 +100,24 @@ a:active {
 	text-align: left;
 	margin: 0;
 	padding: 0;
+}
+
+.page-section {
+	text-align: center;
+}
+
+.center-box {
+	display: flex;
+	justify-content: center;
+}
+
+.list-item {
+	background-color: rgb(60, 60, 60);
+	border: 2px solid rgb(120, 120, 120);
+	border-radius: 5px;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
