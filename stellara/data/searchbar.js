@@ -1,46 +1,36 @@
 import { sortDataBySchemeMode, sortDataBySearch } from "./search-sort.js";
 
-const rawData = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/data.json")
-const searchScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/search.json")
-const sortScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/sort.json")
-
-async function fetchJsonData(url) {
-	try {
-		const response = await fetch(url);
-		if (!response.ok) {
-			throw new Error(`Network response was not ok ${response.status} ${response.statusText}`);
-		}
-		return await response.json(); 
-	} catch (error) {
-		console.error(`Error fetching or parsing JSON: ${error}`);
-	}
+if (document.readyState === "loading") {
+	document.addEventListener("DOMContentLoaded", init);
+} else {
+	init();
 }
 
-console.log("t")
-document.addEventListener('DOMContentLoaded', ()=>{
+async function init() {
 	const searchbar = document.querySelector('.searchbar');
 	if (!searchbar) return;
 	const output = document.getElementById("output");
 
-	const paramName = 'q'
+	const rawData = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/data.json", []);
+	const searchScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/search.json");
+	const sortScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/sort.json");
+
+	const paramName = 'q';
 	const searchParams = new URLSearchParams(window.location.search);
 	const queryParam = searchParams.get(paramName);
+	const search = debounce(searchSort, 300);
 
-	console.log(`${rawData}`)
-	console.log(`${searchScheme}`)
-	console.log(`${sortScheme}`)
-	
-	let searchQuery = queryParam
-	let sortMode = "default"
-	let reverse = false
+	let searchQuery = queryParam;
+	let sortMode = "default";
+	let reverse = false;
 
 	if (queryParam) {
-		searchbar.value = queryParam
+		searchbar.value = queryParam;
 		search(searchQuery, sortMode, reverse);
 	}
 
 	searchbar.addEventListener("input", (event) => {
-		console.log("a")
+		console.log("a");
 		search(event.target.value, sortMode, reverse);
 	});
 
@@ -50,12 +40,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
 		if (value) {
 			url.searchParams.set(paramName, value);
 		} else {
-			url.searchParams.delete(paramName)
+			url.searchParams.delete(paramName);
 		}
 		window.history.pushState({}, '', url);
 	});
 
-	const search = debounce(searchSort, 300);
+	async function fetchJsonData(url, backup = {}) {
+		try {
+			const response = await fetch(url);
+			if (!response.ok) {
+				throw new Error(`Network response was not ok ${response.status} ${response.statusText}`);
+			}
+			return await response.json();
+		} catch (error) {
+			console.error(`Error fetching or parsing JSON: ${error}`);
+			return backup;
+		}
+	}
 
 	function debounce(func, delay) {
 		let timeoutId;
@@ -68,10 +69,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
 	}
 
 	function searchSort(query, sort, reverse) {
-		const sorted = sortDataBySchemeMode(rawData, sortScheme, sort)
-		const data = sortDataBySearch(sorted, searchScheme,query)
+		output.textContent = query;
+		const sorted = sortDataBySchemeMode(rawData, sortScheme, sort);
+		const data = sortDataBySearch(sorted, searchScheme,query);
 		const ids = data.map(item => item.id).filter(Boolean);
-		if (reverse) ids.reverse()
-		musicListUpdate(ids)
+		if (reverse) ids.reverse();
+		musicListUpdate(ids);
 	}
-});
+
+	function musicListUpdate(ids) {
+		return;
+	}
+}

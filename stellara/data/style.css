@@ -42,7 +42,8 @@ a:active {
 
 .sidebar {
 	background-color: rgb(50, 50, 50);
-	border-right: 2px solid rgb(100, 100, 100);
+	border-right: 0.1em solid rgb(100, 100, 100);
+	font-size: calc(var(--sidebar-size) / 12);
 	padding: 0.5em;
 	padding-top: 1em;
 	overflow-y: auto;
@@ -70,7 +71,6 @@ a:active {
 	display: flex;
 	flex-direction: column;
 	gap: 1em;
-	font-size: calc(var(--sidebar-size) / 12);
 }
 
 .title {
