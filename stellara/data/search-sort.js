@@ -1,28 +1,32 @@
-function sortDataBySearch(data, searchScheme, inputText = "", includeWeight = false) {
+export function sortDataBySearch(data, searchScheme, inputText = "", includeWeight = false) {
 	if (inputText === "") {
 		return data;
 	} else {
 		data.reverse();
+
 		const outData = [];
-		const index = [];
-		for (let i = 0; i < data.length; i++) {
-			index.push(0);
-		}
-		const inputTokens = inputText.toLowerCase().split(" ").filter(t => t !== "");
+		const index = new Array(data.length).fill(0);
+		const inputTokens = inputText.toLowerCase().split(" ").filter(Boolean);
+
 		for (const key of Object.keys(searchScheme)) {
-			let i = 0;
 			const searchItem = searchScheme[key];
-			for (const item of data) {
+
+			for (let i = 0; i < data.length; i++) {
+				const item = data[i];
+
 				if (key in item) {
 					let value = item[key];
+
 					if (Array.isArray(value)) {
 						value = value.join(" ");
 					}
-					value = value.toLowerCase().split(" ").filter(t => t !== "");
+
+					value = value.toLowerCase().split(" ").filter(Boolean);
+
 					let success = false;
-					const weight = parseFloat(searchItem.weight ?? 1);
-					const tokenWeight = parseFloat(searchItem.token_weight ?? 0);
-					const positionWeight = parseFloat(searchItem.position_weight ?? 0);
+					const weight = Number(searchItem.weight ?? 1);
+					const tokenWeight = Number(searchItem.token_weight ?? 0);
+					const positionWeight = Number(searchItem.position_weight ?? 0);
 					let totalWeight = 0;
 
 					switch (searchItem.type) {
@@ -37,6 +41,7 @@ function sortDataBySearch(data, searchScheme, inputText = "", includeWeight = fa
 								}
 							}
 							break;
+
 						case "exact":
 							for (const token of inputTokens) {
 								if (value.includes(token)) {
@@ -46,39 +51,60 @@ function sortDataBySearch(data, searchScheme, inputText = "", includeWeight = fa
 								}
 							}
 							break;
+
 						case "range":
-							// TODO: implement range
+							for (const token of inputTokens) {
+								const parts = token.split("|");
+								if (parts.length === 2) {
+									let [start, end] = parts;
+									if (start > end) {
+										[start, end] = [end, start];
+									}
+									for (const searchToken of value) {
+										if (start <= searchToken && searchToken <= end) {
+											success = true;
+											totalWeight += tokenWeight;
+											totalWeight += positionWeight * (inputTokens.length - inputTokens.indexOf(token));
+										}
+									}
+								}
+							}
 							break;
 					}
+
 					if (success) {
 						totalWeight += weight;
 					}
+
 					index[i] += totalWeight;
 				}
-				i++;
 			}
 		}
+
 		const sortArray = [];
 		for (let i = 0; i < index.length; i++) {
 			if (index[i] !== 0) {
 				sortArray.push([index[i], i]);
 			}
 		}
-		sortArray.sort((a, b) => a[0] - b[0]);
-		sortArray.reverse();
-		for (const item of sortArray) {
-			const out = JSON.parse(JSON.stringify(data[item[1]]));
-			if (includeWeight) {
-				out.weight = item[0];
-			}
+
+		sortArray.sort((a, b) => b[0] - a[0]);
+
+		for (const [weightValue, dataIndex] of sortArray) {
+			const out = includeWeight
+				? { ...data[dataIndex], weight: weightValue }
+				: data[dataIndex];
+
 			outData.push(out);
 		}
+
 		return outData;
 	}
 }
 
-function sortDataBySchemeMode(data, sortScheme, sortMode = "default") {
+export function sortDataBySchemeMode(data, sortScheme, sortMode = "default") {
 	let mode = sortScheme[sortMode];
+
 	while (typeof mode === "string") {
 		if (mode in sortScheme) {
 			mode = sortScheme[mode];
@@ -86,41 +112,54 @@ function sortDataBySchemeMode(data, sortScheme, sortMode = "default") {
 			break;
 		}
 	}
+
 	return sortData(data, mode);
 }
 
-function sortData(data, sortMode) {
+export function sortData(data, sortMode) {
 	let groups = [data];
+
 	for (const ruleKey of Object.keys(sortMode)) {
 		const rule = sortMode[ruleKey];
 		const newGroups = [];
 		const groupMap = {};
-		let i = 0;
+		let groupIndex = 0;
 
 		for (const group of groups) {
 			switch (rule.type) {
+
 				case "sort": {
-					const g = JSON.parse(JSON.stringify(group));
+					const g = [...group];
+
 					g.sort((a, b) => {
+						const aVal = a[ruleKey];
+						const bVal = b[ruleKey];
+
 						if (rule.reverse) {
-							return a[ruleKey] > b[ruleKey] ? 1 : -1;
+							return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
 						} else {
-							return a[ruleKey] < b[ruleKey] ? 1 : -1;
+							return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
 						}
 					});
+
 					newGroups.push(g);
 					break;
 				}
+
 				case "order": {
 					const buckets = {};
-					let order = rule.order.slice();
+					const order = [...rule.order];
+
 					if (rule.reverse) {
 						order.reverse();
 					}
+
 					for (const bucket of order) {
 						buckets[bucket] = [];
 					}
+
 					buckets[null] = [];
+
 					for (const item of group) {
 						const key = item[ruleKey];
 						if (key in buckets) {
@@ -129,46 +168,43 @@ function sortData(data, sortMode) {
 							buckets[null].push(item);
 						}
 					}
-					for (const bucket of Object.keys(buckets)) {
-						if (buckets[bucket].length > 0) {
-							newGroups.push(buckets[bucket]);
+
+					for (const bucketKey of Object.keys(buckets)) {
+						if (buckets[bucketKey].length > 0) {
+							newGroups.push(buckets[bucketKey]);
 						}
 					}
 					break;
 				}
+
 				case "group": {
-					const items = [];
-					i = 0;
+					let ungrouped = [];
+
 					for (const item of group) {
 						const value = item[ruleKey];
-						if (value !== null && value !== undefined) {
-							if (items.length > 0) {
-								const g = [];
-								for (const itm of items) {
-									g.push(itm);
-								}
-								newGroups.push(g);
-								i++;
-								items.length = 0;
+
+						if (value != null) {
+							if (ungrouped.length > 0) {
+								newGroups.push([...ungrouped]);
+								groupIndex++;
+								ungrouped = [];
 							}
+
 							if (value in groupMap) {
 								newGroups[groupMap[value]].push(item);
 							} else {
-								groupMap[value] = i;
-								i++;
+								groupMap[value] = groupIndex;
 								newGroups.push([item]);
+								groupIndex++;
 							}
 						} else {
-							items.push(item);
+							ungrouped.push(item);
 						}
 					}
-					if (items.length > 0) {
-						const g = [];
-						for (const item of items) {
-							g.push(item);
-						}
-						newGroups.push(g);
-						i++;
+
+					if (ungrouped.length > 0) {
+						newGroups.push([...ungrouped]);
+						groupIndex++;
 					}
 					break;
 				}
@@ -176,14 +212,17 @@ function sortData(data, sortMode) {
 		}
 
 		if (rule.type === "group" && rule.reverse) {
-			for (const item of Object.keys(groupMap)) {
-				newGroups[groupMap[item]].reverse();
+			for (const key of Object.keys(groupMap)) {
+				newGroups[groupMap[key]].reverse();
 			}
 		}
+
 		if (rule.reverse_after) {
 			newGroups.reverse();
 		}
+
 		groups = newGroups;
 	}
+
 	return groups.flat();
 }

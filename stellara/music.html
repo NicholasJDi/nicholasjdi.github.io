@@ -6,7 +6,9 @@
 	<title>Stellara - Music</title>
 	<link rel="stylesheet" href="data/style.css" type="text/css" media="all">
 	<link rel="stylesheet" href="data/sidebar.css" type="text/css" media="all">
+	<link rel="stylesheet" href="data/music.css" type="text/css" media="all">
 	<script src="data/sidebar.js"></script>
+	<script type="module" src="data/searchbar.js"></script>
 </head>
 <body>
 	<div class="topbar">
@@ -33,7 +35,8 @@
 		</div>
 	</div>
 	<div class="content">
-		<p><a href="home.html">hi</a></p>
+		<input type="text" class="searchbar" placeholder="Search...">
+		<p>Current value: <span id="output"></span></p>
 	</div>
 </body>
 </html>
