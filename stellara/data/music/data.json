@@ -1,5 +1,6 @@
 [
 	{
+		"id":"single_title",
 		"title":"single title",
 		"artists":["artist1"],
 		"type":"single",
@@ -10,6 +11,7 @@
 		"art":"https://nicholasjdi.github.io/stellara/data/music/art/single%20title.png"
 	},
 	{
+		"id":"album_title",
 		"title":"album title",
 		"album":"this be an album",
 		"artists":["artist1"],
@@ -22,6 +24,7 @@
 		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20album.png"
 	},
 	{
+		"id":"ep_title",
 		"title":"ep title",
 		"album":"this be an ep",
 		"artists":["artist1","artist2"],
@@ -33,6 +36,7 @@
 		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20ep.png"
 	},
 	{
+		"id":"remix_title",
 		"title":"remix title",
 		"artists":["artist1"],
 		"contributers":["contri1"],
@@ -45,11 +49,12 @@
 		"art":"https://nicholasjdi.github.io/stellara/data/music/art/remix%20title.png"
 	},
 	{
+		"id":"ep_title_but_older",
 		"title":"ep title but older",
 		"album":"this be an ep",
 		"artists":["artist1"],
 		"type":"ep",
-		"date":"2023-6-14",
+		"date":"2023-06-14",
 		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/artist1%20-%20ep%20title%20but%20older.mp3",
 		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/artist1%20-%20ep%20title%20but%20older.mp3",
 		"file_library":"https://nicholasjdi.github.io/stellara/data/music/songs/library/artist1%20-%20ep%20title%20but%20older.mp3",

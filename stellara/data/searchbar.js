@@ -8,7 +8,7 @@ async function fetchJsonData(url) {
 	try {
 		const response = await fetch(url);
 		if (!response.ok) {
-			throw new Error('Network response was not ok');
+			throw new Error(`Network response was not ok ${response.status} ${response.statusText}`);
 		}
 		return await response.json(); 
 	} catch (error) {
@@ -16,6 +16,7 @@ async function fetchJsonData(url) {
 	}
 }
 
+console.log("t")
 document.addEventListener('DOMContentLoaded', ()=>{
 	const searchbar = document.querySelector('.searchbar');
 	if (!searchbar) return;
@@ -67,9 +68,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 	}
 
 	function searchSort(query, sort, reverse) {
-		const sorted = sortDataBySchemeMode()
-		const data = sortDataBySearch(sorted)
-		if (reverse) data.reverse()
-		musicListUpdate()
+		const sorted = sortDataBySchemeMode(rawData, sortScheme, sort)
+		const data = sortDataBySearch(sorted, searchScheme,query)
+		const ids = data.map(item => item.id).filter(Boolean);
+		if (reverse) ids.reverse()
+		musicListUpdate(ids)
 	}
 });
