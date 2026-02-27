@@ -1,5 +1,3 @@
-import { sortDataBySearch, sortDataBySchemeMode } from "./search-sort";
-
 document.addEventListener('DOMContentLoaded', ()=>{
 	const searchbar = document.querySelector('.searchbar');
 	if (!searchbar) {console.console.error('No searchbar found'); return}
