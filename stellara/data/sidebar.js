@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 	
 	// Prevent animation on initial load
 	sidebar.classList.add('no-anim');
-	if (sidebarParam === null) {
+	if (!sidebarParam) {
 		// Restore saved state (if any)
 		if (localStorage.getItem('sidebar-open') !== 'false') {
 			sidebar.classList.add('open');
