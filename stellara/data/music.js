@@ -29,7 +29,6 @@ const searchScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara
 const sortScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/sort.json", null);
 if (rawData && searchScheme && sortScheme) {
 
-	
 	resolveMusicLoaded();
 } else {
 	loadFailed = true
@@ -37,6 +36,7 @@ if (rawData && searchScheme && sortScheme) {
 }
 
 function searchSort(query, sort, reverse) {
+	console.log(query)
 	if (output) output.textContent = query;
 	if (loadFailed) return;
 	const sorted = sortDataBySchemeMode(rawData, sortScheme, sort);
