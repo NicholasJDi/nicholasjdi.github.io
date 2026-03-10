@@ -15,7 +15,7 @@ if (searchbar) {
 	if (!searchQuery) searchQuery = "";
 
 	searchbar.value = searchQuery;
-	searchSort(searchQuery, sortMode, reverse);
+	search(searchQuery, sortMode, reverse);
 
 	searchbar.addEventListener("input", (event) => {
 		search(event.target.value, sortMode, reverse);
