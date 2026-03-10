@@ -1,7 +1,6 @@
 import searchSort from "./music.js";
 
 const searchbar = document.querySelector('.searchbar');
-if (!searchbar) return;
 
 const searchParamName = 'q';
 const searchParams = new URLSearchParams(window.location.search);
@@ -18,7 +17,6 @@ if (queryParam) {
 }
 
 searchbar.addEventListener("input", (event) => {
-	console.log("a");
 	search(event.target.value, sortMode, reverse);
 });
 
