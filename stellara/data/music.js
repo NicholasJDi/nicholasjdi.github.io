@@ -4,12 +4,7 @@ export default searchSort
 
 const output = document.getElementById("output");
 
-let resolveMusicLoaded;
-const musicListReady = new Promise(resolve => {
-	resolveMusicLoaded = resolve;
-});
-
-let loadFailed = false
+let loadFailed = false;
 
 async function fetchJsonData(url, backup = {}) {
 	try {
@@ -24,15 +19,46 @@ async function fetchJsonData(url, backup = {}) {
 	}
 }
 
+const songListItems = new Map();
+
 const rawData = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/data.json", null);
 const searchScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/search.json", null);
 const sortScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/sort.json", null);
-if (rawData && searchScheme && sortScheme) {
+const songList = document.querySelector('.song-list');
+if (rawData && searchScheme && sortScheme && songList) {
+	try {
+		songList.classList.add("hidden");
+		for (const song of rawData) {
+			// prepare stuff
+			const id = song.id;
+			if (!id) {
+				console.error(`${JSON.stringify(song)} does not include an id`);
+				continue;
+			}
 
-	resolveMusicLoaded();
+			// build the item
+			const songListItem = document.createElement("div");
+			if (!songListItem) {
+				console.error(`failed to create song list item '${id}'`)
+			}
+			songListItem.id = id;
+			songListItem.classList.add('song-list-item')
+
+			// set the items content
+			const text = document.createElement('a');
+			text.textContent = id;
+			songListItem.appendChild(text);
+			
+			// add the item
+			songListItem.classList.add("visible");
+			songListItems.set(id, songListItem);
+			songList.appendChild(songListItem);
+		}
+		songList.classList.remove("hidden");
+	} catch (e) {console.error(`${e}`)}
 } else {
-	loadFailed = true
-	console.error(`Failed to fetch Json data, listData: ${!!rawData}; searchScheme: ${!!searchScheme}; sortScheme: ${!!sortScheme};`);
+	loadFailed = true;
+	console.error(`Failed to fetch Json data, listData: ${!!rawData}; searchScheme: ${!!searchScheme}; sortScheme: ${!!sortScheme}; songList: ${!!songList};`);
 }
 
 function searchSort(query, sort, reverse) {
@@ -47,5 +73,20 @@ function searchSort(query, sort, reverse) {
 }
 
 async function musicListUpdate(ids) {
-	await musicListReady;
+	try {
+	console.log(ids)
+	songList.classList.add('hidden')
+	songList.querySelectorAll(".visible").forEach(songListItem => {
+		songListItem.classList.remove("visible");
+	});
+	
+	for (const id of ids) {
+		const songListItem = songListItems.get(id);
+		if (!songListItem) continue;
+
+		songListItem.classList.add("visible");
+		songList.appendChild(songListItem);
+	}
+	songList.classList.remove('hidden')
+	} catch (e) {console.error(`${e}`)}
 }

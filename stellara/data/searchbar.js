@@ -2,34 +2,36 @@ import searchSort from "./music.js";
 
 const searchbar = document.querySelector('.searchbar');
 
-const searchParamName = 'q';
-const searchParams = new URLSearchParams(window.location.search);
-const queryParam = searchParams.get(searchParamName);
-const search = debounce(searchSort, 300);
+if (searchbar) {
+	const searchParamName = 'q';
+	const searchParams = new URLSearchParams(window.location.search);
+	const queryParam = searchParams.get(searchParamName);
+	const search = debounce(searchSort, 300);
 
-let searchQuery = queryParam;
-let sortMode = "default";
-let reverse = false;
+	let searchQuery = queryParam;
+	let sortMode = "default";
+	let reverse = false;
 
-if (queryParam) {
-	searchbar.value = queryParam;
-	search(searchQuery, sortMode, reverse);
-}
-
-searchbar.addEventListener("input", (event) => {
-	search(event.target.value, sortMode, reverse);
-});
-
-searchbar.addEventListener("change", function(event) {
-	const value = event.target.value.trim();
-	const url = new URL(window.location.href);
-	if (value) {
-		url.searchParams.set(searchParamName, value);
-	} else {
-		url.searchParams.delete(searchParamName);
+	if (queryParam) {
+		searchbar.value = queryParam;
+		search(searchQuery, sortMode, reverse);
 	}
-	window.history.pushState({}, '', url);
-});
+
+	searchbar.addEventListener("input", (event) => {
+		search(event.target.value, sortMode, reverse);
+	});
+
+	searchbar.addEventListener("change", function(event) {
+		const value = event.target.value.trim();
+		const url = new URL(window.location.href);
+		if (value) {
+			url.searchParams.set(searchParamName, value);
+		} else {
+			url.searchParams.delete(searchParamName);
+		}
+		window.history.pushState({}, '', url);
+	});
+}
 
 function debounce(func, delay) {
 	let timeoutId;

@@ -110,14 +110,3 @@ a:active {
 	display: flex;
 	justify-content: center;
 }
-
-.list-item {
-	background-color: rgb(60, 60, 60);
-	border: 2px solid rgb(120, 120, 120);
-	border-radius: 5px;
-	padding: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	margin-left: 5px;
-	margin-right: 5px;
-}
