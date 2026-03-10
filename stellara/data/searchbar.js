@@ -9,13 +9,13 @@ if (searchbar) {
 	const search = debounce(searchSort, 300);
 
 	let searchQuery = queryParam;
-	let sortMode = "default";
-	let reverse = false;
+	const sortMode = "default";
+	const reverse = false;
 
-	if (queryParam) {
-		searchbar.value = queryParam;
-		search(searchQuery, sortMode, reverse);
-	}
+	if (!searchQuery) searchQuery = "";
+
+	searchbar.value = searchQuery;
+	searchSort(searchQuery, sortMode, reverse);
 
 	searchbar.addEventListener("input", (event) => {
 		search(event.target.value, sortMode, reverse);

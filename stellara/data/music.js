@@ -54,7 +54,6 @@ if (rawData && searchScheme && sortScheme && songList) {
 			songListItems.set(id, songListItem);
 			songList.appendChild(songListItem);
 		}
-		songList.classList.remove("hidden");
 	} catch (e) {console.error(`${e}`)}
 } else {
 	loadFailed = true;
