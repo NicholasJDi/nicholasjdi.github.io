@@ -1,48 +1,50 @@
-document.addEventListener('DOMContentLoaded', ()=>{
-	const sidebar = document.querySelector('.sidebar');
-	if (!sidebar) return;
-	const btn = document.querySelector('.sidebar-toggle');
-	const searchParams = new URLSearchParams(window.location.search);
-	const sidebarParam = searchParams.get('sidebar');
-	let isOpen = true;
-	
-	// Prevent animation on initial load
-	sidebar.classList.add('no-anim');
-	if (!sidebarParam) {
-		// Restore saved state (if any)
-		if (localStorage.getItem('sidebar-open') !== 'false') {
-			sidebar.classList.add('open');
-		} else {
-			sidebar.classList.remove('open');
-		}
-	} else if (sidebarParam === 'open') {
-		// Force the sidebar to be open
-		if (document.documentElement.clientWidth > 800) {
-			sidebar.classList.add('open');
-		} else {
-			sidebar.classList.remove('open');
-		}
+console.log('e');
+try {
+const sidebar = document.querySelector('.sidebar');
+console.log(`sb: ${sidebar};`);
+if (!sidebar) return;
+const btn = document.querySelector('.sidebar-toggle');
+const searchParams = new URLSearchParams(window.location.search);
+const sidebarParam = searchParams.get('sidebar');
+let isOpen = true;
+
+// Prevent animation on initial load
+sidebar.classList.add('no-anim');
+if (!sidebarParam) {
+	// Restore saved state (if any)
+	if (localStorage.getItem('sidebar-open') !== 'false') {
+		sidebar.classList.add('open');
 	} else {
-		// Force the sidebar to be closed
-		if (document.documentElement.clientWidth > 800) {
-			sidebar.classList.remove('open');
-		} else {
-			sidebar.classList.add('open');
-		}
+		sidebar.classList.remove('open');
 	}
+} else if (sidebarParam === 'open') {
+	// Force the sidebar to be open
+	if (document.documentElement.clientWidth > 800) {
+		sidebar.classList.add('open');
+	} else {
+		sidebar.classList.remove('open');
+	}
+} else {
+	// Force the sidebar to be closed
+	if (document.documentElement.clientWidth > 800) {
+		sidebar.classList.remove('open');
+	} else {
+		sidebar.classList.add('open');
+	}
+}
 
-	// Save initial state
-	isOpen = sidebar.classList.contains('open');
-	localStorage.setItem('sidebar-open', isOpen ? 'true' : 'false');
+// Save initial state
+isOpen = sidebar.classList.contains('open');
+localStorage.setItem('sidebar-open', isOpen ? 'true' : 'false');
 
-	// Allow animations after initial state is applied
-	setTimeout(() => { sidebar.classList.remove('no-anim'); }, 1000);
+// Allow animations after initial state is applied
+setTimeout(() => { sidebar.classList.remove('no-anim'); }, 1000);
 
 	if (!btn) return;
-	// Toggle sidebar on button click and save state
-	btn.addEventListener('click', ()=>{
-		isOpen = sidebar.classList.toggle('open');
-		sidebar.classList.remove('no-anim');
-		localStorage.setItem('sidebar-open', isOpen ? 'true' : 'false');
-	});
+// Toggle sidebar on button click and save state
+btn.addEventListener('click', ()=>{
+	isOpen = sidebar.classList.toggle('open');
+	sidebar.classList.remove('no-anim');
+	localStorage.setItem('sidebar-open', isOpen ? 'true' : 'false');
 });
+} catch (e) {console.log(`${e}`);}
