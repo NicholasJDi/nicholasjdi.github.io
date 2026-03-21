@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 	const sidebarParam = searchParams.get('sidebar');
 	let isOpen = true;
 	
-	// Prevent animation on initial load
+	// Prevent animation on initial load (fallback)
 	sidebar.classList.add('no-anim');
 	if (!sidebarParam) {
 		// Restore saved state (if any)
