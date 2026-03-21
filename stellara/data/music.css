@@ -10,7 +10,7 @@
 }
 
 .song-list.hidden {
-    visibility: hidden;
+    display: none;
 }
 
 .song-list-item {
