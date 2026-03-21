@@ -26,5 +26,13 @@
 }
 
 .song-list-item.visible {
+    display: flex;
+}
+
+.no-results-text {
+    display: none;
+}
+
+.no-results-text.visible {
     display: block;
 }

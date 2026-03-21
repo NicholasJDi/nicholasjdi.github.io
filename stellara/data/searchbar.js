@@ -3,9 +3,9 @@ import searchSort from "./music.js";
 const searchbar = document.querySelector('.searchbar');
 
 if (searchbar) {
-	const searchParamName = 'q';
+	const queryParamName = 'q';
 	const searchParams = new URLSearchParams(window.location.search);
-	const queryParam = searchParams.get(searchParamName);
+	const queryParam = searchParams.get(queryParamName);
 	const search = debounce(searchSort, 300);
 
 	let searchQuery = queryParam;
@@ -15,7 +15,7 @@ if (searchbar) {
 	if (!searchQuery) searchQuery = "";
 
 	searchbar.value = searchQuery;
-	search(searchQuery, sortMode, reverse);
+	searchSort(searchQuery, sortMode, reverse);
 
 	searchbar.addEventListener("input", (event) => {
 		search(event.target.value, sortMode, reverse);
@@ -25,9 +25,9 @@ if (searchbar) {
 		const value = event.target.value.trim();
 		const url = new URL(window.location.href);
 		if (value) {
-			url.searchParams.set(searchParamName, value);
+			url.searchParams.set(queryParamName, value);
 		} else {
-			url.searchParams.delete(searchParamName);
+			url.searchParams.delete(queryParamName);
 		}
 		window.history.pushState({}, '', url);
 	});
