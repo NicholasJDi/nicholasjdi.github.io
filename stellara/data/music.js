@@ -45,7 +45,7 @@ if (rawData && searchScheme && sortScheme && songList) {
 			const art = song.art ? song.art : song.art_high_res ? song.art_high_res : '';
 			const art_high_res = song.art_high_res ? song.art_high_res : song.art ? song.art : '';
 			if (!art || !art_high_res) {
-				console.console.warn(`${JSON.stringify(song)} does not include art`);
+				console.error(`${JSON.stringify(song)} does not include art`);
 			}
 			const title = song.title ? song.title : 'Missing Title :<';
 			const artists = song.artists ? song.artists.join(', ') : 'Missing Artist(s) :<';
