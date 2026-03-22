@@ -8,7 +8,8 @@
 		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/artist1%20-%20single%20title.mp3",
 		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/artist1%20-%20single%20title.mp3",
 		"file_library":"https://nicholasjdi.github.io/stellara/data/music/songs/library/artist1%20-%20single%20title.mp3",
-		"art":"https://nicholasjdi.github.io/stellara/data/music/art/single%20title.png"
+		"art":"https://nicholasjdi.github.io/stellara/data/music/art/single%20title.png",
+		"art_full":"https://nicholasjdi.github.io/stellara/data/music/art/heigh_res/single%20title.png"
 	},
 	{
 		"id":"album_title",
@@ -21,7 +22,8 @@
 		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/artist1%20-%20album%20title%20(with%20contri1%20and%20contri2).mp3",
 		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/artist1%20-%20album%20title%20(with%20contri1%20and%20contri2).mp3",
 		"file_library":"https://nicholasjdi.github.io/stellara/data/music/songs/library/artist1%20-%20album%20title%20(with%20contri1%20and%20contri2).mp3",
-		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20album.png"
+		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20album.png",
+		"art_full":"https://nicholasjdi.github.io/stellara/data/music/art/heigh_res/this%20be%20an%20album.png"
 	},
 	{
 		"id":"ep_title",
@@ -33,7 +35,8 @@
 		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/artist1%20x%20artist2%20-%20ep%20title.mp3",
 		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/artist1%20x%20artist2%20-%20ep%20title.mp3",
 		"file_library":"https://nicholasjdi.github.io/stellara/data/music/songs/library/artist1%20x%20artist2%20-%20ep%20title.mp3",
-		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20ep.png"
+		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20ep.png",
+		"art_full":"https://nicholasjdi.github.io/stellara/data/music/art/heigh_res/this%20be%20an%20ep.png"
 	},
 	{
 		"id":"remix_title",
@@ -46,7 +49,8 @@
 		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/oriartist1%20-%20remix%20title%20[artist1%20Remix%20(with%20contri1)].mp3",
 		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/oriartist1%20-%20remix%20title%20[artist1%20Remix%20(with%20contri1)].mp3",
 		"file_library":"https://nicholasjdi.github.io/stellara/data/music/songs/library/oriartist1%20-%20remix%20title%20[artist1%20Remix%20(with%20contri1)].mp3",
-		"art":"https://nicholasjdi.github.io/stellara/data/music/art/remix%20title.png"
+		"art":"https://nicholasjdi.github.io/stellara/data/music/art/remix%20title.png",
+		"art_full":"https://nicholasjdi.github.io/stellara/data/music/art/heigh_res/remix%20title.png"
 	},
 	{
 		"id":"ep_title_but_older",
@@ -58,6 +62,16 @@
 		"file":"https://nicholasjdi.github.io/stellara/data/music/songs/artist1%20-%20ep%20title%20but%20older.mp3",
 		"file_art":"https://nicholasjdi.github.io/stellara/data/music/songs/with_art/artist1%20-%20ep%20title%20but%20older.mp3",
 		"file_library":"https://nicholasjdi.github.io/stellara/data/music/songs/library/artist1%20-%20ep%20title%20but%20older.mp3",
-		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20ep.png"
+		"art":"https://nicholasjdi.github.io/stellara/data/music/art/this%20be%20an%20ep.png",
+		"art_full":"https://nicholasjdi.github.io/stellara/data/music/art/heigh_res/this%20be%20an%20ep.png"
+	},
+	{
+		"id":"test",
+		"title":"Moonlight",
+		"artists":["Geoxor"],
+		"type":"single",
+		"date":"2019-03-10",
+		"file":"https://beta.geoxor.moe/audio/Geoxor%20-%20Moonlight.mp3",
+		"art":"https://beta.geoxor.moe/covers/moonlight.png"
 	}
 ]

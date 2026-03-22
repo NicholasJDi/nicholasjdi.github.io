@@ -23,6 +23,8 @@ async function fetchJsonData(url, backup = {}) {
 const songListItems = new Map();
 const visibleSongListItems = new Set();
 
+const data = new Map();
+
 const rawData = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/data.json", null);
 const searchScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/search.json", null);
 const sortScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/sort.json", null);
@@ -36,16 +38,41 @@ if (rawData && searchScheme && sortScheme && songList) {
 				console.error(`${JSON.stringify(song)} does not include an id`);
 				continue;
 			}
+			const file = song.file_art ? song.file_art : song.file ? song.file : song.file_library;
+			if (!file) {
+				console.error(`${JSON.stringify(song)} does not include a file`);
+				continue;
+			}
+			const art = song.art ? song.art : song.art_full;
+			const art_full = song.art_full ? song.art_full : song.art;
+			if (!art || !art_full) {
+				console.error(`${JSON.stringify(song)} does not include art`);
+				continue;
+			}
+			const title = song.title ? song.title : 'Missing Title :<';
+			const artists = song.artists ? song.artists.join(', ') : 'Missing Artist(s) :<';
+
+			// save data
+			data.set(id, song)
 
 			// build the item
 			const songListItem = document.createElement("div");
+			songListItem.className = 'song-list-item';
 			songListItem.id = id;
-			songListItem.classList.add('song-list-item');
 
 			// set the items content
-			const text = document.createElement('a');
-			text.textContent = id;
-			songListItem.appendChild(text);
+			songListItem.innerHTML = `
+				<div class="left-box">
+					<a class="art link" target="_blank" href="${art_full}">
+						<img class="art image" src="${art}" alt="Cover Art">
+					</a>
+					<div class="details-box">
+						<h3 class="title">${title}</h3>
+						<p class="artist">${artists}</p>
+					</div>
+				</div>
+				<a class="button download" target="_blank" download="" href="${file}">Download</a>
+			`
 
 			// add the item
 			songListItems.set(id, songListItem);

@@ -1,20 +1,31 @@
 .searchbar {
-    color: white;
-    background-color: black;
+	color: white;
+	background-color: black;
 }
 
 .song-list {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 .song-list.hidden {
-    display: none;
+	display: none;
+}
+
+.no-results-text {
+	display: none;
+}
+
+.no-results-text.visible {
+	display: block;
 }
 
 .song-list-item {
-    display: none;
+	display: none;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	background-color: rgb(60, 60, 60);
 	border: 2px solid rgb(120, 120, 120);
 	border-radius: 5px;
@@ -26,13 +37,19 @@
 }
 
 .song-list-item.visible {
-    display: flex;
+	display: flex;
 }
 
-.no-results-text {
-    display: none;
+.left-box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1em;
 }
 
-.no-results-text.visible {
-    display: block;
+.details-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 100%;
 }
