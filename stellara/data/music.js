@@ -40,19 +40,19 @@ if (rawData && searchScheme && sortScheme && songList) {
 			}
 			const file = song.file_art ? song.file_art : song.file ? song.file : song.file_library ? song.file_library : '';
 			if (!file) {
-				console.error(`${JSON.stringify(song)} does not include a file`);
+				console.warn(`${JSON.stringify(song)} does not include a file`);
 			}
 			const art = song.art ? song.art : song.art_high_res ? song.art_high_res : '';
 			const art_high_res = song.art_high_res ? song.art_high_res : song.art ? song.art : '';
 			if (!art || !art_high_res) {
-				console.error(`${JSON.stringify(song)} does not include art`);
+				console.warn(`${JSON.stringify(song)} does not include art`);
 			}
 			const title = song.title ? song.title : 'Missing Title :<';
 			const artists = song.artists ? song.artists.join(', ') : 'Missing Artist(s) :<';
 			const date = song.date ? song.date : 'Unknown'
 			const album = song.album ? song.album : ''
 			let type = 'Unknown';
-			switch (song.type.toLowerCase()) {
+			switch ((song.type ? song.type : '').toLowerCase()) {
 				case 'single':
 					type = 'Single';
 					break;
@@ -91,7 +91,7 @@ if (rawData && searchScheme && sortScheme && songList) {
 					<p class="type-text ${type.toLowerCase()}" title="${album}">${type}</p>
 				</div>
 				<div class="right-box">
-					<a class="button download" target="_blank" download="" href="${file}">Download</a>
+					<a class="button download" target="_blank" download="" href="${file ? file : ' '}">Download</a>
 				</div>
 			`
 
