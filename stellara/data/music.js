@@ -51,6 +51,8 @@ if (rawData && searchScheme && sortScheme && songList) {
 			}
 			const title = song.title ? song.title : 'Missing Title :<';
 			const artists = song.artists ? song.artists.join(', ') : 'Missing Artist(s) :<';
+			const date = song.date ? song.date : 'Unknown'
+			const type = (song.type ? song.type : 'unknown').toUpperCase();
 
 			// save data
 			data.set(id, song)
@@ -71,7 +73,13 @@ if (rawData && searchScheme && sortScheme && songList) {
 						<p class="artist-text">${artists}</p>
 					</div>
 				</div>
-				<a class="button download" target="_blank" download="" href="${file}">Download</a>
+				<div class="middle-box">
+					<p class="date-text">${date}</p>
+					<p class="type-text ${type}">${type}</p>
+				</div>
+				<div class="right-box">
+					<a class="button download" target="_blank" download="" href="${file}">Download</a>
+				</div>
 			`
 
 			// add the item

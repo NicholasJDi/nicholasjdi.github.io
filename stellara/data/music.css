@@ -29,8 +29,7 @@
 	align-items: center;
 	background-color: rgb(50, 50, 50);
 	border: 0.2em solid rgb(80, 80, 80);
-	border-radius: 5px;
-	padding: 0.3em;
+	border-radius: 0.2em;
 }
 
 .song-list-item.visible {
@@ -56,8 +55,9 @@
 }
 
 .cover-art.link {
+	box-sizing: content-box;
 	background-color: black;
-	border: 0.1em solid rgb(80, 80, 80);
+	border-right: 0.15em solid rgb(80, 80, 80);
 }
 
 .title-text {
@@ -69,4 +69,15 @@
 .artist-text {
 	margin: 0;
 	padding: 0;
+}
+
+.middle-box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1em;
+}
+
+.right-box {
+	padding-right: 1em;
 }

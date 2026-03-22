@@ -37,7 +37,7 @@
 	<div class="content">
 		<input type="text" class="searchbar" placeholder="Search...">
 		<p>Current value: <span id="output"></span></p>
-		<div class="song-list"><h2 class="no-results-text">No Results</h2></div>
+		<div class="song-list"><h2 class="no-results-text">No Results</h2></div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<div class="left-box">
 					<a class="cover-art link" target="_blank" href="${art_high_res}">
 						<img class="cover-art image" src="${art}" alt="Cover Art">
@@ -47,7 +47,13 @@
 						<p class="artist-text">${artists}</p>
 					</div>
 				</div>
-				<a class="button download" target="_blank" download="" href="${file}">Download</a>
+				<div class="middle-box">
+					<p class="date-text">${date}</p>
+					<p class="type-text ${type}">${type}</p>
+				</div>
+				<div class="right-box">
+					<a class="button download" target="_blank" download="" href="${file}">Download</a>
+				</div>
 	</div>
 </body>
 </html>
