@@ -38,16 +38,14 @@ if (rawData && searchScheme && sortScheme && songList) {
 				console.error(`${JSON.stringify(song)} does not include an id`);
 				continue;
 			}
-			const file = song.file_art ? song.file_art : song.file ? song.file : song.file_library;
+			const file = song.file_art ? song.file_art : song.file ? song.file : song.file_library ? song.file_library : '';
 			if (!file) {
 				console.error(`${JSON.stringify(song)} does not include a file`);
-				continue;
 			}
-			const art = song.art ? song.art : song.art_high_res;
-			const art_high_res = song.art_high_res ? song.art_high_res : song.art;
+			const art = song.art ? song.art : song.art_high_res ? song.art_high_res : '';
+			const art_high_res = song.art_high_res ? song.art_high_res : song.art ? song.art : '';
 			if (!art || !art_high_res) {
-				console.error(`${JSON.stringify(song)} does not include art`);
-				continue;
+				console.console.warn(`${JSON.stringify(song)} does not include art`);
 			}
 			const title = song.title ? song.title : 'Missing Title :<';
 			const artists = song.artists ? song.artists.join(', ') : 'Missing Artist(s) :<';
