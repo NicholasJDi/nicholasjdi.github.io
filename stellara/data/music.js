@@ -43,9 +43,9 @@ if (rawData && searchScheme && sortScheme && songList) {
 				console.error(`${JSON.stringify(song)} does not include a file`);
 				continue;
 			}
-			const art = song.art ? song.art : song.art_full;
-			const art_full = song.art_full ? song.art_full : song.art;
-			if (!art || !art_full) {
+			const art = song.art ? song.art : song.art_high_res;
+			const art_high_res = song.art_high_res ? song.art_high_res : song.art;
+			if (!art || !art_high_res) {
 				console.error(`${JSON.stringify(song)} does not include art`);
 				continue;
 			}
@@ -63,12 +63,12 @@ if (rawData && searchScheme && sortScheme && songList) {
 			// set the items content
 			songListItem.innerHTML = `
 				<div class="left-box">
-					<a class="art link" target="_blank" href="${art_full}">
-						<img class="art image" src="${art}" alt="Cover Art">
+					<a class="cover-art link" target="_blank" href="${art_high_res}">
+						<img class="cover-art image" src="${art}" alt="Cover Art">
 					</a>
 					<div class="details-box">
-						<h3 class="title">${title}</h3>
-						<p class="artist">${artists}</p>
+						<p class="title-text">${title}</p>
+						<p class="artist-text">${artists}</p>
 					</div>
 				</div>
 				<a class="button download" target="_blank" download="" href="${file}">Download</a>

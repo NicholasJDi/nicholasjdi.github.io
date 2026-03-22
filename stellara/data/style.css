@@ -31,7 +31,7 @@ a:active {
 
 .topbar {
 	background-color: rgb(50, 50, 50);
-	border-bottom: 2px solid rgb(100, 100, 100);
+	border-bottom: 0.2em solid rgb(100, 100, 100);
 	height: var(--topbar-size);
 	z-index: 999;
 	padding-left: 0.5rem;
