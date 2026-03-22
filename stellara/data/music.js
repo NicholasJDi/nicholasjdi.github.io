@@ -52,7 +52,22 @@ if (rawData && searchScheme && sortScheme && songList) {
 			const title = song.title ? song.title : 'Missing Title :<';
 			const artists = song.artists ? song.artists.join(', ') : 'Missing Artist(s) :<';
 			const date = song.date ? song.date : 'Unknown'
-			const type = (song.type ? song.type : 'unknown').toUpperCase();
+			const album = song.album ? song.album : ''
+			let type = 'Unknown';
+			switch (song.type.toLowerCase()) {
+				case 'single':
+					type = 'Single';
+					break;
+				case 'remix':
+					type = 'Remix';
+					break;
+				case 'album':
+					type = 'Album';
+					break;
+				case 'ep':
+					type = 'EP';
+					break;
+			}
 
 			// save data
 			data.set(id, song)
@@ -75,7 +90,7 @@ if (rawData && searchScheme && sortScheme && songList) {
 				</div>
 				<div class="middle-box">
 					<p class="date-text">${date}</p>
-					<p class="type-text ${type}">${type}</p>
+					<p class="type-text ${type.toLowerCase()}" title="${album}">${type}</p>
 				</div>
 				<div class="right-box">
 					<a class="button download" target="_blank" download="" href="${file}">Download</a>
