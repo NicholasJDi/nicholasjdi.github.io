@@ -1,6 +1,10 @@
 .searchbar {
 	color: white;
 	background-color: black;
+	border-radius: 0.2em;
+	border: 0.2em solid transparent;
+	width: 100%;
+	padding: 0.5em;
 }
 
 .song-list {
@@ -82,9 +86,25 @@
 }
 
 .type-text {
+	--type-color: white;
+	color: var(--type-color);
+	border: 0.15em solid var(--type-color);
+	border-radius: 9999px;
+	padding: 0.2em 0.35em;
 	margin: 0;
-	padding: 0;
 }
+
+.type-text.single {--type-color: turquoise;}
+.type-text.single:hover {background-color: rgba(64, 224, 208, 0.1);}
+
+.type-text.remix {--type-color: springgreen;}
+.type-text.remix:hover {background-color: rgba(0, 255, 127, 0.1);}
+
+.type-text.album {--type-color: violet;}
+.type-text.album:hover {background-color: rgba(238, 130, 238, 0.1);}
+
+.type-text.ep {--type-color: white;}
+.type-text.ep:hover {background-color: rgba(255, 255, 255, 0.1);}
 
 .right-box {
 	display: flex;
@@ -92,6 +112,18 @@
 	align-items: center;
 	justify-content: space-around;
 	flex: auto;
+}
+
+.download-button {
+	color: white !important;
+	text-decoration: none;
+	background-color: darkcyan;
+	border-radius: 9999px;
+	padding: 0.5em 1em;
+}
+
+.download-button:hover {
+	background-color: darkturquoise;
 }
 
 @media (max-width:900px) {

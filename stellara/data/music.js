@@ -57,7 +57,7 @@ if (rawData && searchScheme && sortScheme && songList) {
 			const title = song.title ?? 'Missing Title :<';
 			const artists = song.artists?.join(', ') ?? 'Missing Artist(s) :<';
 			const date = song.date ?? 'Unknown'
-			const album = song.album ?? ''
+			const album = song.album ?? song.title ?? ''
 			const type = typeMap[song.type?.toLowerCase()] ?? 'Unknown';
 
 			// save data
@@ -82,7 +82,7 @@ if (rawData && searchScheme && sortScheme && songList) {
 						<p class="date-text">${date}</p>
 						<p class="type-text ${type.toLowerCase()}" title="${album}">${type}</p>
 					</div>
-					<a class="button download" target="_blank" download="" href="${file}">Download</a>
+					<a class="download-button" target="_blank" download="" href="${file}">Download</a>
 				</div>
 			`
 
