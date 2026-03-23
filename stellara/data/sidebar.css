@@ -93,7 +93,7 @@
 	}
 }
 
-@media (max-width:800px) {
+@media (max-width:900px) {
 	:root{
 		--sidebar-size: 30vw;
 	}
@@ -108,7 +108,7 @@
 	.sidebar:not(.open) ~ .content { animation: size-in 0.3s forwards; }
 }
 
-@media (max-width:500px) {
+@media (max-width:600px) {
 	:root{
 		--sidebar-size: 100vw;
 	}

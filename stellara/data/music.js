@@ -31,6 +31,13 @@ const sortScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/d
 const songList = document.querySelector('.song-list');
 if (rawData && searchScheme && sortScheme && songList) {
 	try {
+		const typeMap = {
+			single: 'Single',
+			remix: 'Remix',
+			album: 'Album',
+			ep: 'EP'
+		};
+		// populate songList
 		for (const song of rawData) {
 			// prepare stuff
 			const id = song.id;
@@ -38,34 +45,20 @@ if (rawData && searchScheme && sortScheme && songList) {
 				console.error(`${JSON.stringify(song)} does not include an id`);
 				continue;
 			}
-			const file = song.file_art ? song.file_art : song.file ? song.file : song.file_library ? song.file_library : '';
+			const file = song.file_art ?? song.file ?? song.file_library ?? '';
 			if (!file) {
 				console.warn(`${JSON.stringify(song)} does not include a file`);
 			}
-			const art = song.art ? song.art : song.art_high_res ? song.art_high_res : '';
-			const art_high_res = song.art_high_res ? song.art_high_res : song.art ? song.art : '';
+			const art = song.art ?? song.art_high_res ?? '';
+			const art_high_res = song.art_high_res ?? song.art ?? '';
 			if (!art || !art_high_res) {
 				console.warn(`${JSON.stringify(song)} does not include art`);
 			}
-			const title = song.title ? song.title : 'Missing Title :<';
-			const artists = song.artists ? song.artists.join(', ') : 'Missing Artist(s) :<';
-			const date = song.date ? song.date : 'Unknown'
-			const album = song.album ? song.album : ''
-			let type = 'Unknown';
-			switch ((song.type ? song.type : '').toLowerCase()) {
-				case 'single':
-					type = 'Single';
-					break;
-				case 'remix':
-					type = 'Remix';
-					break;
-				case 'album':
-					type = 'Album';
-					break;
-				case 'ep':
-					type = 'EP';
-					break;
-			}
+			const title = song.title ?? 'Missing Title :<';
+			const artists = song.artists?.join(', ') ?? 'Missing Artist(s) :<';
+			const date = song.date ?? 'Unknown'
+			const album = song.album ?? ''
+			const type = typeMap[song.type?.toLowerCase()] ?? 'Unknown';
 
 			// save data
 			data.set(id, song)
@@ -77,21 +70,19 @@ if (rawData && searchScheme && sortScheme && songList) {
 
 			// set the items content
 			songListItem.innerHTML = `
-				<div class="left-box">
-					<a class="cover-art link" target="_blank" href="${art_high_res}">
-						<img class="cover-art image" src="${art}" alt="Cover Art">
-					</a>
-					<div class="details-box">
-						<p class="title-text">${title}</p>
-						<p class="artist-text">${artists}</p>
-					</div>
-				</div>
-				<div class="middle-box">
-					<p class="date-text">${date}</p>
-					<p class="type-text ${type.toLowerCase()}" title="${album}">${type}</p>
+				<a class="cover-art link" target="_blank" href="${art_high_res}">
+					<img class="cover-art image" src="${art}" alt="Cover Art">
+				</a>
+				<div class="details-box">
+					<p class="title-text">${title}</p>
+					<p class="artist-text">${artists}</p>
 				</div>
 				<div class="right-box">
-					<a class="button download" target="_blank" download="" href="${file ? file : ' '}">Download</a>
+					<div class="middle-box">
+						<p class="date-text">${date}</p>
+						<p class="type-text ${type.toLowerCase()}" title="${album}">${type}</p>
+					</div>
+					<a class="button download" target="_blank" download="" href="${file}">Download</a>
 				</div>
 			`
 

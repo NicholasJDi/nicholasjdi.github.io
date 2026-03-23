@@ -25,7 +25,6 @@
 .song-list-item {
 	display: none;
 	flex-direction: row;
-	justify-content: space-between;
 	align-items: center;
 	background-color: rgb(50, 50, 50);
 	border: 0.2em solid rgb(80, 80, 80);
@@ -37,28 +36,25 @@
 	display: flex;
 }
 
-.left-box {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 1em;
-}
-
 .details-box {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5em;
-}
-
-.cover-art {
-	aspect-ratio: 1;
-	height: 5em;
+	width: max(10em, 25%);
 }
 
 .cover-art.link {
+	aspect-ratio: 1;
+	height: 5em;
 	box-sizing: content-box;
 	background-color: black;
 	border-right: 0.15em solid rgb(80, 80, 80);
+}
+
+.cover-art.image {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
 }
 
 .title-text {
@@ -76,14 +72,33 @@
 .middle-box {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
-	gap: 1em;
+	gap: 2em;
 }
 
 .date-text {
 	font-family: Verdana, serif;
+	margin: 0;
+	padding: 0;
+}
+
+.type-text {
+	margin: 0;
+	padding: 0;
 }
 
 .right-box {
-	padding-right: 1em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	flex: auto;
+}
+
+@media (max-width:900px) {
+	.details-box {width: max(8em, 25%);}
+	.type-text {display: none;}
+}
+
+@media (max-width:600px) {
+	.middle-box {display: none;}
 }
