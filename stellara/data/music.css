@@ -79,10 +79,24 @@
 	gap: 2em;
 }
 
+.date-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 7em;
+}
+
 .date-text {
 	font-family: Verdana, serif;
 	margin: 0;
 	padding: 0;
+}
+
+.type-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 5em;
 }
 
 .type-text {
@@ -128,9 +142,9 @@
 
 @media (max-width:900px) {
 	.details-box {width: max(8em, 25%);}
-	.type-text {display: none;}
+	.type-box {display: none;}
+	.date-box {display: none;}
 }
 
 @media (max-width:600px) {
-	.middle-box {display: none;}
 }

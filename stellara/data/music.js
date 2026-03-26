@@ -56,7 +56,7 @@ if (rawData && searchScheme && sortScheme && songList) {
 			}
 			const title = song.title ?? 'Missing Title :<';
 			const artists = song.artists?.join(', ') ?? 'Missing Artist(s) :<';
-			const date = song.date ?? 'Unknown'
+			const date = getDateString(song.date) ?? 'Unknown'
 			const album = song.album ?? song.title ?? ''
 			const type = typeMap[song.type?.toLowerCase()] ?? 'Unknown';
 
@@ -79,8 +79,12 @@ if (rawData && searchScheme && sortScheme && songList) {
 				</div>
 				<div class="right-box">
 					<div class="middle-box">
-						<p class="date-text">${date}</p>
-						<p class="type-text ${type.toLowerCase()}" title="${album}">${type}</p>
+						<div class="date-box">
+							<p class="date-text">${date}</p>
+						</div>
+						<div class="type-box">
+							<p class="type-text ${type.toLowerCase()}" title="${album}">${type}</p>
+						</div>
 					</div>
 					<a class="download-button" target="_blank" download="" href="${file}">Download</a>
 				</div>
@@ -96,6 +100,15 @@ if (rawData && searchScheme && sortScheme && songList) {
 } else {
 	loadFailed = true;
 	console.error(`Failed to fetch Json data, listData: ${!!rawData}; searchScheme: ${!!searchScheme}; sortScheme: ${!!sortScheme}; songList: ${!!songList};`);
+}
+
+function getDateString(date) {
+	if (!date) return;
+	const nums = date.split('-');
+	if (nums.length != 3) return;
+	const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	const index = Number(nums[1]) - 1;
+	return `${months[index]} ${nums[2]}, ${nums[0]}`;
 }
 
 function searchSort(query, sort, reverse) {
