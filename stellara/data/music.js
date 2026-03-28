@@ -73,20 +73,25 @@ if (rawData && searchScheme && sortScheme && songList) {
 				<a class="cover-art link" target="_blank" href="${art_high_res}">
 					<img class="cover-art image" src="${art}" alt="Cover Art">
 				</a>
-				<div class="details-box">
-					<p class="title-text">${title}</p>
-					<p class="artist-text">${artists}</p>
-				</div>
-				<div class="right-box">
-					<div class="middle-box">
-						<div class="date-box">
-							<p class="date-text">${date}</p>
+				<div class="content-box">
+					<div class="details-box">
+						<p class="title-text">${title}</p>
+						<p class="artist-text">${artists}</p>
+					</div>
+					<div class="right-box">
+						<div class="info-box">
+							<div class="date-box">
+								<p class="date-text">${date}</p>
+							</div>
+							<div class="type-box">
+								<p class="type-text ${type.toLowerCase()}" title="${album}">${type}</p>
+							</div>
 						</div>
-						<div class="type-box">
-							<p class="type-text ${type.toLowerCase()}" title="${album}">${type}</p>
+						<div class="dropdown-box">
+							<a class="download-button" target="_blank" download="" href="${file}">Download</a>
+							<button class="dropdown-button">V</button>
 						</div>
 					</div>
-					<a class="download-button" target="_blank" download="" href="${file}">Download</a>
 				</div>
 			`
 

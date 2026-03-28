@@ -29,27 +29,19 @@
 .song-list-item {
 	display: none;
 	flex-direction: row;
-	align-items: center;
-	background-color: rgb(50, 50, 50);
+	align-items: stretch;
+	background-color: rgb(80, 80, 80);
 	border: 0.2em solid rgb(80, 80, 80);
 	border-radius: 0.2em;
-	gap: 1em;
 }
 
 .song-list-item.visible {
 	display: flex;
 }
 
-.details-box {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5em;
-	width: max(10em, 25%);
-}
-
 .cover-art.link {
 	aspect-ratio: 1;
-	height: 5em;
+	height: 7em;
 	box-sizing: content-box;
 	background-color: black;
 	border-right: 0.15em solid rgb(80, 80, 80);
@@ -61,8 +53,24 @@
 	height: 100%;
 }
 
+.content-box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: rgb(50, 50, 50);
+	flex: auto;
+	padding: 0 1em;
+}
+
+.details-box {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+	width: max(10em, 25%);
+}
+
 .title-text {
-	font-size: 1.3em;
+	font-size: 1.37em;
 	margin: 0;
 	padding: 0;
 }
@@ -73,7 +81,7 @@
 	padding: 0;
 }
 
-.middle-box {
+.info-box {
 	display: flex;
 	flex-direction: row;
 	gap: 2em;
@@ -107,6 +115,7 @@
 	padding: 0.2em 0.35em;
 	margin: 0;
 }
+.type-text:hover {background-color: rgba(255, 255, 255, 0.1);}
 
 .type-text.single {--type-color: turquoise;}
 .type-text.single:hover {background-color: rgba(64, 224, 208, 0.1);}
@@ -128,16 +137,46 @@
 	flex: auto;
 }
 
+.dropdown-box {
+	display: flex;
+	flex-direction: row;
+}
+
 .download-button {
 	color: white !important;
 	text-decoration: none;
 	background-color: darkcyan;
-	border-radius: 9999px;
-	padding: 0.5em 1em;
+	padding: 0.5em;
+	padding-left: 1em;
+	padding-right: 0.5em;
+	border-top-left-radius: 9999px;
+	border-bottom-left-radius: 9999px;
 }
+
 
 .download-button:hover {
 	background-color: darkturquoise;
+}
+.download-button:hover ~ .dropdown-button {
+	border-color: transparent;
+}
+
+.dropdown-button {
+	color: white;
+	background-color: darkcyan;
+	padding: 0.5em;
+	padding-right: 1em;
+	padding-left: 0.5em;
+	border: none;
+	border-left: 1px solid rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+	border-top-right-radius: 9999px;
+	border-bottom-right-radius: 9999px;
+}
+
+.dropdown-button:hover {
+	background-color: darkturquoise;
+	border-color: transparent;
 }
 
 @media (max-width:900px) {
