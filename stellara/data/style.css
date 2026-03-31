@@ -52,12 +52,21 @@ a:active {
 }
 
 .content{
+	container-type: size;
 	font-family: 'Jersey 25', Verdana, serif;
+}
+
+.content-inner {
 	padding: 2rem;
 	overflow: auto;
 	scrollbar-gutter: stable both-edges;
 }
 
+.content .content-inner {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+}
 .sidebar-toggle {
 	background-color: transparent;
 	border: none;

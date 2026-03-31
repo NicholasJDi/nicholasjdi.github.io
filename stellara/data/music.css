@@ -15,31 +15,25 @@
 	margin-top: 1.5em;
 }
 
-.song-list.hidden {
-	display: none;
-}
+.song-list.hidden { display: none; }
 
 .no-results-text {
 	margin-top: 0;
 	display: none;
 }
 
-.no-results-text.visible {
-	display: block;
-}
+.no-results-text.visible { display: block; }
 
 .song-list-item {
 	display: none;
 	flex-direction: row;
 	align-items: stretch;
-	background-color: rgb(80, 80, 80);
+	background-color: rgb(50, 50, 50);
 	border: 0.2em solid rgb(80, 80, 80);
 	border-radius: 0.2em;
 }
 
-.song-list-item.visible {
-	display: flex;
-}
+.song-list-item.visible { display: flex; }
 
 .cover-art.link {
 	aspect-ratio: 1;
@@ -59,7 +53,6 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	background-color: rgb(50, 50, 50);
 	flex: auto;
 	padding: 0 1em;
 }
@@ -86,6 +79,7 @@
 .info-box {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	gap: 2em;
 }
 
@@ -117,19 +111,19 @@
 	padding: 0.2em 0.35em;
 	margin: 0;
 }
-.type-text:hover {background-color: rgba(255, 255, 255, 0.1);}
+.type-text:hover { background-color: rgba(255, 255, 255, 0.1); }
 
-.type-text.single {--type-color: turquoise;}
-.type-text.single:hover {background-color: rgba(64, 224, 208, 0.1);}
+.type-text.single { --type-color: turquoise;}
+.type-text.single:hover { background-color: rgba(64, 224, 208, 0.1); }
 
-.type-text.remix {--type-color: springgreen;}
-.type-text.remix:hover {background-color: rgba(0, 255, 127, 0.1);}
+.type-text.remix { --type-color: springgreen;}
+.type-text.remix:hover { background-color: rgba(0, 255, 127, 0.1); }
 
-.type-text.album {--type-color: violet;}
-.type-text.album:hover {background-color: rgba(238, 130, 238, 0.1);}
+.type-text.album { --type-color: violet;}
+.type-text.album:hover { background-color: rgba(238, 130, 238, 0.1); }
 
-.type-text.ep {--type-color: white;}
-.type-text.ep:hover {background-color: rgba(255, 255, 255, 0.1);}
+.type-text.ep { --type-color: white;}
+.type-text.ep:hover { background-color: rgba(255, 255, 255, 0.1); }
 
 .right-box {
 	display: flex;
@@ -156,12 +150,8 @@
 }
 
 
-.download-button:hover {
-	background-color: darkturquoise;
-}
-.download-button:hover ~ .dropdown-button {
-	border-color: transparent;
-}
+.download-button:hover { background-color: darkturquoise; }
+.download-button:hover ~ .dropdown-button { border-color: transparent; }
 
 .dropdown-button {
 	color: white;
@@ -181,53 +171,88 @@
 }
 
 .dropdown {
+	font-size: 1.1em;
 	box-sizing: border-box;
 	position: absolute;
 	display: none;
 	flex-direction: column;
 	align-items: stretch;
+	background-color: rgb(50, 50, 50);
 	border: 0.1em solid rgb(75, 75, 75);
 	border-top: 0;
-	background-color: rgb(50, 50, 50);
 	top: 50%;
 	right: 0;
-	padding-top: 1.5em;
 	width: 100%;
+	padding-top: 1.5em;
 	z-index: 100;
 }
 
-.dropdown.open {
-	display: flex;
-}
+.dropdown.open { display: flex; }
 
 .dropdown-item {
 	color: white !important;
 	text-align: center;
 	background-color: transparent;
-	padding:0.25em 0.5em;
+	padding: 0.3em 0.5em;
 }
 
-.dropdown-item.hidden {
-	display: none;
-}
+.dropdown-item.hidden { display: none; }
 
-.dropdown-item:hover {
-	background-color: rgb(60, 60, 60);
-}
+.dropdown-item:hover { background-color: rgb(60, 60, 60); }
 
-.dropdown-item.bottom { padding-bottom: .5em;}
+.dropdown-item.bottom { padding-bottom: .5em; }
 
 button.dropdown-item {
 	border: none;
 	font-family: 'Jersey 25', Verdana, serif;
 	font-size: 1em;
+	cursor: pointer;
 }
 
-@media (max-width:900px) {
-	.details-box {width: max(8em, 25%);}
-	.type-box {display: none;}
-	.date-box {display: none;}
+.menu-box {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	container-type: size;
+	background-color: transparent;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 2em;
+	transition: background-color 0.3s ease;
+	pointer-events: none;
+	z-index: 1000;
 }
 
-@media (max-width:600px) {
+.menu-box:has(.track-info-menu.visible) {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.track-info-menu {
+	display: none;
+	background-color: black;
+	aspect-ratio: 16 / 9;
+	width: 100%;
+	max-width: calc(100cqh * 16 / 9);
+	max-height: 100cqh;
+	pointer-events: auto;
+	z-index: 1000;
+}
+
+.track-info-menu.visible { display: block; }
+
+@container (max-width: 1100px) {
+	.info-box { gap: 1em; }
+}
+
+@container (max-width: 900px) {
+	.details-box { width: max(8em, 25%); }
+	.info-box { flex-direction: column-reverse; }
+}
+
+@container (max-width:700px) {
+	.date-box, .type-box { display: none; }
+	.details-box { width: max(10em, 25%); }
 }
