@@ -12,6 +12,7 @@
 	flex-direction: column;
 	width: 100%;
 	gap: 1em;
+	margin-top: 1.5em;
 }
 
 .song-list.hidden {
@@ -19,6 +20,7 @@
 }
 
 .no-results-text {
+	margin-top: 0;
 	display: none;
 }
 
@@ -140,6 +142,7 @@
 .dropdown-box {
 	display: flex;
 	flex-direction: row;
+	position: relative;
 }
 
 .download-button {
@@ -149,8 +152,7 @@
 	padding: 0.5em;
 	padding-left: 1em;
 	padding-right: 0.5em;
-	border-top-left-radius: 9999px;
-	border-bottom-left-radius: 9999px;
+	border-radius: 9999px 0 0 9999px;
 }
 
 
@@ -170,13 +172,55 @@
 	border: none;
 	border-left: 1px solid rgba(255, 255, 255, 0.2);
 	cursor: pointer;
-	border-top-right-radius: 9999px;
-	border-bottom-right-radius: 9999px;
+	border-radius: 0 9999px 9999px 0;
 }
 
 .dropdown-button:hover {
 	background-color: darkturquoise;
 	border-color: transparent;
+}
+
+.dropdown {
+	box-sizing: border-box;
+	position: absolute;
+	display: none;
+	flex-direction: column;
+	align-items: stretch;
+	border: 0.1em solid rgb(75, 75, 75);
+	border-top: 0;
+	background-color: rgb(50, 50, 50);
+	top: 50%;
+	right: 0;
+	padding-top: 1.5em;
+	width: 100%;
+	z-index: 100;
+}
+
+.dropdown.open {
+	display: flex;
+}
+
+.dropdown-item {
+	color: white !important;
+	text-align: center;
+	background-color: transparent;
+	padding:0.25em 0.5em;
+}
+
+.dropdown-item.hidden {
+	display: none;
+}
+
+.dropdown-item:hover {
+	background-color: rgb(60, 60, 60);
+}
+
+.dropdown-item.bottom { padding-bottom: .5em;}
+
+button.dropdown-item {
+	border: none;
+	font-family: 'Jersey 25', Verdana, serif;
+	font-size: 1em;
 }
 
 @media (max-width:900px) {

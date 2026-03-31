@@ -2,7 +2,6 @@ import { sortDataBySchemeMode, sortDataBySearch } from "./search-sort.js";
 
 export default searchSort;
 
-const output = document.getElementById("output");
 const noResultsText = document.querySelector('.no-results-text');
 
 let loadFailed = false;
@@ -24,6 +23,12 @@ const songListItems = new Map();
 const visibleSongListItems = new Set();
 
 const data = new Map();
+
+const dropdown = document.querySelector('.dropdown');
+const dropdownDownloadNoArt = dropdown.querySelector('#download-no-art');
+const dropdownDownloadLibrary = dropdown.querySelector('#download-library');
+const dropdownDownloadArt = dropdown.querySelector('#download-art-high-res');
+const dropdownOpenMenu = dropdown.querySelector('#open-menu');
 
 const rawData = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/data.json", null);
 const searchScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/search.json", null);
@@ -99,6 +104,32 @@ if (rawData && searchScheme && sortScheme && songList) {
 			songListItems.set(id, songListItem);
 			songList.appendChild(songListItem);
 		}
+
+		songList.addEventListener("click", (event) => {
+			if (!dropdown) return;
+
+			const button = event.target.closest(".dropdown-button");
+			if (!button) return;
+
+			const songItem = button.closest(".song-list-item");
+			const dropdownBox = button.closest(".dropdown-box");
+
+			if (!songItem || !dropdownBox) return;
+
+			const id = songItem.id;
+
+			handleDropdownClick(id, dropdownBox);
+
+			event.stopPropagation();
+		});
+
+		document.addEventListener("click", (event) => {
+			if (!dropdown.classList.contains("open")) return;
+
+			if (!dropdown.contains(event.target)) {
+				hideDropdown(dropdown.parentElement);
+			}
+		});
 	} catch (e) {
 		console.error(`${e}`)
 	}
@@ -117,7 +148,6 @@ function getDateString(date) {
 }
 
 function searchSort(query, sort, reverse) {
-	if (output) output.textContent = query;
 	if (loadFailed) return;
 	const sorted = sortDataBySchemeMode(rawData, sortScheme, sort);
 	const data = sortDataBySearch(sorted, searchScheme, query);
@@ -157,4 +187,63 @@ function musicListUpdate(ids) {
 		songList.appendChild(fragment);
 	}
 	songList.classList.remove('hidden');
+}
+
+function handleDropdownClick(id, dropdownBox) {
+	if (dropdown.classList.contains('open')) {
+		hideDropdown(dropdown.parentElement);
+		if (dropdown.parentElement !== dropdownBox) {
+			setDropdownContent(id)
+			showDropdown(dropdownBox)
+		}
+	} else {
+		if (dropdown.parentElement !== dropdownBox) {
+			setDropdownContent(id)
+		}
+		showDropdown(dropdownBox)
+	}
+}
+
+function setDropdownContent(id) {
+	dropdownDownloadNoArt
+	dropdownDownloadLibrary
+	dropdownDownloadArt
+	const song = data.get(id)
+	const noArt = song.file;
+	const library = song.file_library;
+	const art = song.art_high_res ?? song.art;
+
+	if (noArt) {
+		dropdownDownloadNoArt.classList.remove('hidden');
+		dropdownDownloadNoArt.href = noArt;
+	} else {
+		dropdownDownloadNoArt.classList.add('hidden');
+	}
+
+	if (library) {
+		dropdownDownloadLibrary.classList.remove('hidden');
+		dropdownDownloadLibrary.href = library;
+	} else {
+		dropdownDownloadLibrary.classList.add('hidden');
+	}
+
+	if (art) {
+		dropdownDownloadArt.classList.remove('hidden');
+		dropdownDownloadArt.href = art;
+	} else {
+		dropdownDownloadArt.classList.add('hidden');
+	}
+}
+
+function showDropdown(dropdownBox) {
+	dropdownBox.appendChild(dropdown);
+	dropdownBox.querySelector('.download-button').style.zIndex = 101;
+	dropdownBox.querySelector('.dropdown-button').style.zIndex = 101;
+	dropdown.classList.add('open');
+}
+
+function hideDropdown(dropdownBox) {
+	dropdown.classList.remove('open');
+	dropdownBox.querySelector('.download-button').style.zIndex = '';
+	dropdownBox.querySelector('.dropdown-button').style.zIndex = '';
 }
