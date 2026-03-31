@@ -25,6 +25,7 @@ const visibleSongListItems = new Set();
 const data = new Map();
 
 const dropdown = document.querySelector('.dropdown');
+const dropdownDownload = dropdown.querySelector('#download-with-art');
 const dropdownDownloadNoArt = dropdown.querySelector('#download-no-art');
 const dropdownDownloadLibrary = dropdown.querySelector('#download-library');
 const dropdownDownloadArt = dropdown.querySelector('#download-art-high-res');
@@ -209,9 +210,17 @@ function setDropdownContent(id) {
 	dropdownDownloadLibrary
 	dropdownDownloadArt
 	const song = data.get(id)
+	const withArt = song.file_art;
 	const noArt = song.file;
 	const library = song.file_library;
 	const art = song.art_high_res ?? song.art;
+
+	if (withArt) {
+		dropdownDownload.classList.remove('hidden');
+		dropdownDownload.href = withArt;
+	} else {
+		dropdownDownload.classList.add('hidden');
+	}
 
 	if (noArt) {
 		dropdownDownloadNoArt.classList.remove('hidden');
