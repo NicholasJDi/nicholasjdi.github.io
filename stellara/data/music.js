@@ -32,6 +32,7 @@ const dropdownDownloadArt = dropdown.querySelector('#download-art-high-res');
 const dropdownOpenMenu = dropdown.querySelector('#open-menu');
 
 const trackInfoMenu = document.querySelector('.track-info-menu');
+const menuCloseButton = trackInfoMenu.querySelector('.close-info-menu-button');
 
 const rawData = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/data.json", null);
 const searchScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/search.json", null);
@@ -142,6 +143,12 @@ if (rawData && searchScheme && sortScheme && songList) {
 
 				showTrackInfoMenu(id);
 				hideDropdown(dropdown.parentElement);
+			});
+		}
+
+		if (menuCloseButton) {
+			menuCloseButton.addEventListener('click', (event) => {
+				hideTrackInfoMenu();
 			});
 		}
 	} catch (e) {
@@ -270,10 +277,10 @@ function hideDropdown(dropdownBox) {
 function showTrackInfoMenu(id) {
 	if (id !== trackInfoMenu.id) {
 		trackInfoMenu.id = id
-		// build content
-		trackInfoMenu.innerHTML = `
-		
-		`
 	}
 	trackInfoMenu.classList.add('visible');
+}
+
+function hideTrackInfoMenu() {
+	trackInfoMenu.classList.remove('visible');
 }

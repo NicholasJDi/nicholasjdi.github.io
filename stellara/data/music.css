@@ -232,16 +232,34 @@ button.dropdown-item {
 
 .track-info-menu {
 	display: none;
-	background-color: black;
+	background-color: rgb(0, 0, 0);
 	aspect-ratio: 16 / 9;
 	width: 100%;
 	max-width: calc(100cqh * 16 / 9);
 	max-height: 100cqh;
 	pointer-events: auto;
 	z-index: 1000;
+	padding: 1em;
+	border: 0.2em solid rgb(100, 100, 100);
+	border-radius: 0.7em;
 }
 
 .track-info-menu.visible { display: block; }
+
+.close-info-menu-button {
+	color: white;
+	text-align: center;
+	background-color: transparent;
+	border: none;
+	border-radius: 9999px;
+	cursor: pointer;
+	width: 2em;
+	height: 2em;
+}
+
+.close-info-menu-button:hover {
+	background-color: gray;
+}
 
 @container (max-width: 1100px) {
 	.info-box { gap: 1em; }
