@@ -32,7 +32,11 @@ const dropdownDownloadArt = dropdown.querySelector('#download-art-high-res');
 const dropdownOpenMenu = dropdown.querySelector('#open-menu');
 
 const trackInfoMenu = document.querySelector('.track-info-menu');
+const rawDataMenu = trackInfoMenu.querySelector('.raw-data-menu');
 const menuCloseButton = trackInfoMenu.querySelector('.close-info-menu-button');
+const menuSizeButton = trackInfoMenu.querySelector('.size-info-menu-button');
+const rawDataButton = trackInfoMenu.querySelector('.raw-data-menu-button');
+const trackInfoButton = trackInfoMenu.querySelector('.track-info-menu-button');
 
 const rawData = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/data.json", null);
 const searchScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/search.json", null);
@@ -136,21 +140,47 @@ if (rawData && searchScheme && sortScheme && songList) {
 		});
 
 		if (dropdownOpenMenu) {
-			dropdownOpenMenu.addEventListener('click', (event) => {
-				const songItem = event.target.closest('.song-list-item');
+			dropdownOpenMenu.onclick = () => {
+				const songItem = dropdownOpenMenu.closest('.song-list-item');
 				if (!songItem) return;
 				const id = songItem.id;
 
 				showTrackInfoMenu(id);
 				hideDropdown(dropdown.parentElement);
-			});
+			};
 		}
 
 		if (menuCloseButton) {
-			menuCloseButton.addEventListener('click', (event) => {
+			menuCloseButton.onclick = () => {
 				hideTrackInfoMenu();
-			});
+			};
 		}
+
+		if (menuSizeButton) {
+			menuSizeButton.onclick = () => {
+				if (trackInfoMenu.classList.contains('full')) {
+					trackInfoMenu.classList.remove('full');
+					menuSizeButton.textContent = '□';
+				} else {
+					trackInfoMenu.classList.add('full');
+					menuSizeButton.textContent = '–';
+				}
+			};
+		}
+
+		if (rawDataMenu) {
+			if (rawDataButton) {
+				rawDataButton.onclick = () => {
+					rawDataMenu.classList.add('visible');
+				};
+			}
+			if (trackInfoButton) {
+				trackInfoButton.onclick = () => {
+					rawDataMenu.classList.remove('visible');
+				};
+			}
+		}
+
 	} catch (e) {
 		console.error(`${e}`)
 	}
@@ -277,10 +307,16 @@ function hideDropdown(dropdownBox) {
 function showTrackInfoMenu(id) {
 	if (id !== trackInfoMenu.id) {
 		trackInfoMenu.id = id
+		setTrackInfoMenuContent(id)
 	}
 	trackInfoMenu.classList.add('visible');
 }
 
 function hideTrackInfoMenu() {
 	trackInfoMenu.classList.remove('visible');
+	rawDataMenu.classList.remove('visible');
+}
+
+function setTrackInfoMenuContent(id) {
+
 }

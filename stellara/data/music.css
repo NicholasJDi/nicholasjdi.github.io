@@ -38,7 +38,7 @@
 .cover-art.link {
 	aspect-ratio: 1;
 	height: 7em;
-	box-sizing: content-box;
+	flex-shrink: 0;
 	background-color: black;
 	border-right: 0.15em solid rgb(80, 80, 80);
 }
@@ -230,21 +230,63 @@ button.dropdown-item {
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
+.menu-box:has(.track-info-menu.full) {
+	transition: none;
+	padding: 0;
+}
+
 .track-info-menu {
 	display: none;
-	background-color: rgb(0, 0, 0);
+	box-sizing: border-box;
+	background-color: rgb(40, 40, 40);
 	aspect-ratio: 16 / 9;
 	width: 100%;
 	max-width: calc(100cqh * 16 / 9);
 	max-height: 100cqh;
 	pointer-events: auto;
 	z-index: 1000;
-	padding: 1em;
 	border: 0.2em solid rgb(100, 100, 100);
 	border-radius: 0.7em;
+	flex-direction: column;
+	overflow: hidden;
 }
 
-.track-info-menu.visible { display: block; }
+.track-info-menu.full {
+	border: 0;
+	border-radius: 0;
+	max-width: 100cqw;
+}
+
+.track-info-menu.visible { display: flex; }
+
+.info-menu {
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+	flex: 1;
+	padding: 1em;
+	overflow: auto;
+}
+
+.raw-data-menu {
+	display: none;
+	flex: 1;
+	padding: 1em;
+	overflow: auto;
+}
+
+.raw-data-menu.visible { display: block; }
+
+.track-info-menu:has(.raw-data-menu.visible) .info-menu { display: none; }
+
+.menu-bar {
+	display: flex;
+	position: relative;
+	background-color: rgb(50, 50, 50);
+	flex-direction: row-reverse;
+	border-bottom: 0.1em solid rgb(90,90,90);
+}
 
 .close-info-menu-button {
 	color: white;
@@ -253,13 +295,61 @@ button.dropdown-item {
 	border: none;
 	border-radius: 9999px;
 	cursor: pointer;
-	width: 2em;
-	height: 2em;
+	width: 1.7em;
+	height: 1.7em;
+	margin: 0.5em 0.5em 0.5em 0;
 }
 
-.close-info-menu-button:hover {
-	background-color: gray;
+.close-info-menu-button:hover { background-color: rgb(70, 70, 70); }
+
+.size-info-menu-button {
+	color: white;
+	text-align: center;
+	background-color: transparent;
+	border: none;
+	border-radius: 9999px;
+	cursor: pointer;
+	width: 1.7em;
+	height: 1.7em;
+	margin: 0.5em 0 0.5em 0;
 }
+
+.size-info-menu-button:hover { background-color: rgb(70, 70, 70); }
+
+.track-info-menu-button {
+	color: white;
+	text-align: center;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	height: 100%;
+	border-right: 0.1em solid rgb(90, 90, 90);
+	padding: 0 1em;
+}
+
+.track-info-menu:has(.raw-data-menu:not(.visible)) .track-info-menu-button { background-color: rgb(60, 60, 60); }
+
+.track-info-menu-button:hover { background-color: rgb(70, 70, 70) !important; }
+
+.track-info-menu:has(.raw-data-menu.visible) .track-info-menu-button { color: rgba(255, 255, 255, 0.8); }
+
+.raw-data-menu-button {
+	color: white;
+	text-align: center;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	margin-right: auto;
+	height: 100%;
+	border-right: 0.1em solid rgb(90, 90, 90);
+	padding: 0 1em;
+}
+
+.track-info-menu:has(.raw-data-menu.visible) .raw-data-menu-button { background-color: rgb(60, 60, 60); }
+
+.raw-data-menu-button:hover { background-color: rgb(70, 70, 70) !important;}
+
+.track-info-menu:has(.raw-data-menu:not(.visible)) .raw-data-menu-button { color: rgba(255, 255, 255, 0.8); }
 
 @container (max-width: 1100px) {
 	.info-box { gap: 1em; }
