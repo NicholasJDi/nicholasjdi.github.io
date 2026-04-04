@@ -158,9 +158,13 @@ if (rawData && searchScheme && sortScheme && songList) {
 
 		if (menuSizeButton) {
 			menuSizeButton.onclick = () => {
-				const isFull = trackInfoMenu.classList.toggle('full');
-				trackInfoMenu.parentElement.classList.toggle('expand', isFull);
-				menuSizeButton.textContent = isFull ? '–' : '□';
+				if (trackInfoMenu.classList.contains('full')) {
+					trackInfoMenu.classList.remove('full');
+					menuSizeButton.textContent = '□';
+				} else {
+					trackInfoMenu.classList.add('full');
+					menuSizeButton.textContent = '–';
+				}
 			};
 		}
 
