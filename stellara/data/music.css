@@ -231,8 +231,8 @@ button.dropdown-item {
 }
 
 .menu-box:has(.track-info-menu.full) {
+	padding: 0 !important;
 	transition: none;
-	padding: 0;
 }
 
 .track-info-menu {
