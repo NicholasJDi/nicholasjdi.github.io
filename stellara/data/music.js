@@ -158,13 +158,15 @@ if (rawData && searchScheme && sortScheme && songList) {
 
 		if (menuSizeButton) {
 			menuSizeButton.onclick = () => {
-				if (trackInfoMenu.classList.contains('full')) {
-					trackInfoMenu.classList.remove('full');
-					menuSizeButton.textContent = '□';
-				} else {
-					trackInfoMenu.classList.add('full');
-					menuSizeButton.textContent = '–';
-				}
+				const isFull = trackInfoMenu.classList.toggle('full');
+				menuSizeButton.textContent = isFull ? '–' : '□';
+
+				// force layout recalculation
+				requestAnimationFrame(() => {
+					trackInfoMenu.style.display = 'none';
+					trackInfoMenu.offsetHeight; // force reflow
+					trackInfoMenu.style.display = '';
+				});
 			};
 		}
 
