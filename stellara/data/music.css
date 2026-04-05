@@ -261,7 +261,7 @@ button.dropdown-item {
 
 .info-menu {
 	background-repeat: no-repeat;
-	background-attachment: fixed;
+	background-attachment: local;
 	background-size: cover;
 	background-position: center;
 	flex: 1;
@@ -271,14 +271,22 @@ button.dropdown-item {
 
 .raw-data-menu {
 	display: none;
-	flex: 1;
+	flex-direction: column;
 	padding: 1em;
+	flex: 1;
 	overflow: auto;
 }
 
-.raw-data-menu.visible { display: block; }
+.raw-data-menu.visible { display: flex; }
 
 .track-info-menu:has(.raw-data-menu.visible) .info-menu { display: none; }
+
+.raw-data-title {
+	padding: 0;
+}
+.raw-data-text {
+	padding: 0;
+}
 
 .menu-bar {
 	display: flex;

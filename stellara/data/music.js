@@ -32,6 +32,7 @@ const dropdownDownloadArt = dropdown.querySelector('#download-art-high-res');
 const dropdownOpenMenu = dropdown.querySelector('#open-menu');
 
 const trackInfoMenu = document.querySelector('.track-info-menu');
+const infoMenu = trackInfoMenu.querySelector('.info-menu');
 const rawDataMenu = trackInfoMenu.querySelector('.raw-data-menu');
 const menuCloseButton = trackInfoMenu.querySelector('.close-info-menu-button');
 const menuSizeButton = trackInfoMenu.querySelector('.size-info-menu-button');
@@ -174,6 +175,10 @@ if (rawData && searchScheme && sortScheme && songList) {
 			if (rawDataButton) {
 				rawDataButton.onclick = () => {
 					rawDataMenu.classList.add('visible');
+					if (rawDataMenu.id != trackInfoMenu.id) {
+						rawDataMenu.id = trackInfoMenu.id;
+						setRawDataMenuContent(rawDataMenu.id);
+					}
 				};
 			}
 			if (trackInfoButton) {
@@ -195,7 +200,7 @@ function getDateString(date) {
 	if (!date) return;
 	const nums = date.split('-');
 	if (nums.length != 3) return;
-	const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	const index = Number(nums[1]) - 1;
 	return `${months[index]} ${nums[2]}, ${nums[0]}`;
 }
@@ -247,13 +252,13 @@ function handleDropdownClick(id, dropdownBox) {
 		hideDropdown(dropdown.parentElement);
 		if (dropdown.parentElement !== dropdownBox) {
 			setDropdownContent(id)
-			showDropdown(dropdownBox)
+			showDropdown(dropdownBox);
 		}
 	} else {
 		if (dropdown.parentElement !== dropdownBox) {
 			setDropdownContent(id)
 		}
-		showDropdown(dropdownBox)
+		showDropdown(dropdownBox);
 	}
 }
 
@@ -308,8 +313,8 @@ function hideDropdown(dropdownBox) {
 
 function showTrackInfoMenu(id) {
 	if (id !== trackInfoMenu.id) {
-		trackInfoMenu.id = id
-		setTrackInfoMenuContent(id)
+		trackInfoMenu.id = id;
+		setTrackInfoMenuContent(id);
 	}
 	trackInfoMenu.classList.add('visible');
 }
@@ -320,5 +325,37 @@ function hideTrackInfoMenu() {
 }
 
 function setTrackInfoMenuContent(id) {
+	// clean
+	infoMenu.style = '';
 
+	// prepare
+	const song = data.get(id);
+	const background = song.art_full;
+
+	// set
+	if (background) {
+		infoMenu.style.backgroundImage = `url("${background}")`;
+	}
+}
+
+function setRawDataMenuContent(id) {
+	const song = data.get(id);
+
+	const raw = []
+	for (const [key, value] of Object.entries(song)) {
+		const title = `<h3 class="raw-data-title">${key.replaceAll('_',' ')}</h3>`
+		const text = `<p class="raw-data-text">${Array.isArray(value) ? value.join(', ') : isValidUrl(value) ? `<a target="_blank" href="${value}">${value}</a>` : value}</p>`
+		const data = `<div class="raw-data-item">${title}${text}</div>`
+		raw.push(data);
+	}
+	rawDataMenu.innerHTML = raw.join('\n');
+}
+
+function isValidUrl(string) {
+  try {
+    new URL(string);
+    return true;
+  } catch (err) {
+    return false;
+  }
 }
