@@ -268,6 +268,9 @@ function handleHash() {
 		});
 	}
 
+	if (trackInfoMenu.classList.contains('visible')) {
+		hideTrackInfoMenu();
+	}
 	showTrackInfoMenu(id);
 }
 
@@ -341,7 +344,7 @@ function showTrackInfoMenu(id) {
 		setTrackInfoMenuContent(id);
 	}
 
-	history.replaceState(null, '', `#${id}`);
+	history.pushState(null, '', `#${id}`);
 	trackInfoMenu.classList.add('visible');
 }
 
