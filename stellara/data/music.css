@@ -81,6 +81,7 @@
 	flex-direction: row;
 	align-items: center;
 	gap: 2em;
+	transition: gap 0.3s ease;
 }
 
 .date-box {
@@ -104,26 +105,24 @@
 }
 
 .type-text {
-	--type-color: white;
-	color: var(--type-color);
-	border: 0.15em solid var(--type-color);
+	--type-color: 255, 255, 255;
+	color: rgb(var(--type-color));
+	border: 0.15em solid rgb(var(--type-color));
 	border-radius: 9999px;
 	padding: 0.2em 0.35em;
 	margin: 0;
+	cursor:default;
+	transition: background-color 0.1s ease;
 }
-.type-text:hover { background-color: rgba(255, 255, 255, 0.1); }
+.type-text:hover { background-color: rgba(var(--type-color), 0.2); }
 
-.type-text.single { --type-color: turquoise;}
-.type-text.single:hover { background-color: rgba(64, 224, 208, 0.1); }
+.type-text.single { --type-color: 64, 224, 208; }
 
-.type-text.remix { --type-color: springgreen;}
-.type-text.remix:hover { background-color: rgba(0, 255, 127, 0.1); }
+.type-text.remix { --type-color: 0, 255, 127; }
 
-.type-text.album { --type-color: violet;}
-.type-text.album:hover { background-color: rgba(238, 130, 238, 0.1); }
+.type-text.album { --type-color: 238, 130, 238; }
 
-.type-text.ep { --type-color: white;}
-.type-text.ep:hover { background-color: rgba(255, 255, 255, 0.1); }
+.type-text.ep { --type-color: 255, 255, 255; }
 
 .right-box {
 	display: flex;
@@ -356,16 +355,16 @@ button.dropdown-item {
 
 .track-info-menu:has(.raw-data-menu:not(.visible)) .raw-data-menu-button { color: rgba(255, 255, 255, 0.8); }
 
-@container (max-width: 1100px) {
+@container (max-width: 68.8em) {
 	.info-box { gap: 1em; }
 }
 
-@container (max-width: 900px) {
+@container (max-width: 56.3em) {
 	.details-box { width: max(8em, 25%); }
 	.info-box { flex-direction: column-reverse; }
 }
 
-@container (max-width:700px) {
+@container (max-width: 43.8em) {
 	.date-box, .type-box { display: none; }
 	.details-box { width: max(10em, 25%); }
 }
