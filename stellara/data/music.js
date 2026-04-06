@@ -351,7 +351,7 @@ function showTrackInfoMenu(id) {
 function hideTrackInfoMenu() {
 	trackInfoMenu.classList.remove('visible');
 	rawDataMenu.classList.remove('visible');
-	history.replaceState(null, '', window.location.pathname + window.location.search);
+	window.location.hash = ''
 }
 
 function setTrackInfoMenuContent(id) {

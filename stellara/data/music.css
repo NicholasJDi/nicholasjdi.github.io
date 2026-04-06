@@ -254,6 +254,7 @@ button.dropdown-item {
 	border: 0;
 	border-radius: 0;
 	max-width: 100cqw;
+	height: 100%;
 }
 
 .track-info-menu.visible { display: flex; }
