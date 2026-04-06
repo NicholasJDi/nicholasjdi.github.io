@@ -5,6 +5,7 @@ export default searchSort;
 const noResultsText = document.querySelector('.no-results-text');
 
 let loadFailed = false;
+let hashHandled = false;
 
 async function fetchJsonData(url, backup = {}) {
 	try {
@@ -32,12 +33,13 @@ const dropdownDownloadArt = dropdown.querySelector('#download-art-high-res');
 const dropdownOpenMenu = dropdown.querySelector('#open-menu');
 
 const trackInfoMenu = document.querySelector('.track-info-menu');
-const infoMenu = trackInfoMenu.querySelector('.info-menu');
 const rawDataMenu = trackInfoMenu.querySelector('.raw-data-menu');
 const menuCloseButton = trackInfoMenu.querySelector('.close-info-menu-button');
 const menuSizeButton = trackInfoMenu.querySelector('.size-info-menu-button');
 const rawDataButton = trackInfoMenu.querySelector('.raw-data-menu-button');
 const trackInfoButton = trackInfoMenu.querySelector('.track-info-menu-button');
+
+const infoMenu = trackInfoMenu.querySelector('.info-menu');
 
 const rawData = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/data.json", null);
 const searchScheme = await fetchJsonData("https://nicholasjdi.github.io/stellara/data/music/search.json", null);
@@ -188,6 +190,8 @@ if (rawData && searchScheme && sortScheme && songList) {
 			}
 		}
 
+		window.addEventListener('hashchange', handleHash);
+
 	} catch (e) {
 		console.error(`${e}`)
 	}
@@ -212,6 +216,9 @@ function searchSort(query, sort, reverse) {
 	const ids = data.map(item => item.id).filter(Boolean);
 	if (reverse) ids.reverse();
 	musicListUpdate(ids);
+	if (hashHandled) return;
+	handleHash();
+	hashHandled = true;
 }
 
 function musicListUpdate(ids) {
@@ -245,6 +252,23 @@ function musicListUpdate(ids) {
 		songList.appendChild(fragment);
 	}
 	songList.classList.remove('hidden');
+}
+
+function handleHash() {
+	const id = window.location.hash.slice(1);
+	if (!id) return;
+
+	const item = songList.querySelector(`#${CSS.escape(id)}`);
+	if (!item) return;
+
+	if (item.classList.contains('visible')) {
+		item.scrollIntoView({
+			behavior: 'smooth',
+			block: 'center'
+		});
+	}
+
+	showTrackInfoMenu(id);
 }
 
 function handleDropdownClick(id, dropdownBox) {
@@ -316,12 +340,15 @@ function showTrackInfoMenu(id) {
 		trackInfoMenu.id = id;
 		setTrackInfoMenuContent(id);
 	}
+
+	history.replaceState(null, '', `#${id}`);
 	trackInfoMenu.classList.add('visible');
 }
 
 function hideTrackInfoMenu() {
 	trackInfoMenu.classList.remove('visible');
 	rawDataMenu.classList.remove('visible');
+	history.replaceState(null, '', window.location.pathname + window.location.search);
 }
 
 function setTrackInfoMenuContent(id) {
@@ -341,7 +368,7 @@ function setTrackInfoMenuContent(id) {
 function setRawDataMenuContent(id) {
 	const song = data.get(id);
 
-	const raw = []
+	const raw = [];
 	for (const [key, value] of Object.entries(song)) {
 		const title = `<h3 class="raw-data-title">${key.replaceAll('_',' ')}</h3>`
 		const text = `<p class="raw-data-text">${Array.isArray(value) ? value.join(', ') : isValidUrl(value) ? `<a target="_blank" href="${value}">${value}</a>` : value}</p>`
@@ -352,10 +379,10 @@ function setRawDataMenuContent(id) {
 }
 
 function isValidUrl(string) {
-  try {
-    new URL(string);
-    return true;
-  } catch (err) {
-    return false;
-  }
+	try {
+		new URL(string);
+		return true;
+	} catch (err) {
+		return false;
+	}
 }

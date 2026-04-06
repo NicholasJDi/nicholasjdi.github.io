@@ -281,12 +281,9 @@ button.dropdown-item {
 
 .track-info-menu:has(.raw-data-menu.visible) .info-menu { display: none; }
 
-.raw-data-title {
-	padding: 0;
-}
-.raw-data-text {
-	padding: 0;
-}
+.raw-data-title { padding: 0; }
+
+.raw-data-text { padding: 0; }
 
 .menu-bar {
 	display: flex;
