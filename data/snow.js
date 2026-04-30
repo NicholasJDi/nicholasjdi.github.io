@@ -44,12 +44,12 @@
 	class Snowflake {
 		constructor(element, speed, xPos, yPos) {
 			// set initial snowflake properties
-			this.initialX = xPos;
 			this.element = element;
 			this.speed = speed;
+			this.initialX = xPos;
 			this.xPos = xPos;
 			this.yPos = yPos;
-			this.scale = 1;
+			this.amplitude = 20 + Math.random() * 30;
 
 
 			// declare variables used for snowflake's motion
@@ -64,7 +64,7 @@
 		update(delta) {
 			// using some trigonometry to determine our x and y position
 			this.counter += (this.speed / 5000) * delta;
-			this.xPos = this.initialX + Math.cos(this.counter) * 50;
+			this.xPos = this.initialX + Math.cos(this.counter) * this.amplitude;
 			this.yPos += Math.sin(this.counter) / 40 + (this.speed * delta) / 30;
 			this.scale = 0.5 + Math.abs((10 * Math.cos(this.counter)) / 20);
 
@@ -79,6 +79,11 @@
 			// if snowflake goes below the browser window, move it back to the top
 			if (this.yPos > browserHeight) {
 				this.yPos = -50;
+			}
+			if (this.xPos > browserWidth + 50) {
+				this.xPos = -50;
+			} else if (this.xPos < -50) {
+				this.xPos = browserWidth + 50;
 			}
 		}
 	}
