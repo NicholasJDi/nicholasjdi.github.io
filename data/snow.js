@@ -49,7 +49,7 @@
 			this.initialX = xPos;
 			this.xPos = xPos;
 			this.yPos = yPos;
-			this.amplitude = 20 + Math.random() * 30;
+			this.amplitude = 20 + Math.random() * 50;
 
 
 			// declare variables used for snowflake's motion
