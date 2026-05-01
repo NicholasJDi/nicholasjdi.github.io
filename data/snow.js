@@ -45,19 +45,19 @@
 		constructor(element, speed, xPos, yPos) {
 			// set initial snowflake properties
 			this.element = element;
-			this.speed = speed;
-			this.initialX = xPos;
 			this.xPos = xPos;
 			this.yPos = yPos;
-			this.amplitude = 20 + Math.random() * 50;
-
-
+			
 			// declare variables used for snowflake's motion
-			this.counter = 0;
+			this.initialX = xPos;
+			this.amplitude = 10 + Math.random() * 30;
+			this.scale = 0.2 + Math.random() * 0.8; // 0.2 → 1.0
+			this.speed = (10 + Math.random() * 30) * scale;
 			this.sign = Math.random() < 0.5 ? 1 : -1;
+			this.counter = 0;
 
 			// setting an initial opacity and size for our snowflake
-			this.element.style.opacity = 0.2 + Math.random() * 0.4;
+			this.element.style.opacity = 0.2 + scale * 0.6;
 		}
 
 		// The function responsible for actually moving our snowflake
@@ -65,8 +65,7 @@
 			// using some trigonometry to determine our x and y position
 			this.counter += (this.speed / 5000) * delta;
 			this.xPos = this.initialX + Math.cos(this.counter) * this.amplitude;
-			this.yPos += Math.sin(this.counter) / 40 + (this.speed * delta) / 30;
-			this.scale = 0.5 + Math.abs((10 * Math.cos(this.counter)) / 20);
+			this.yPos += (this.speed * delta) / 30;
 
 			// setting our snowflake's position
 			setTransform(
@@ -119,12 +118,10 @@
 			// set our snowflake's initial position and related properties
 			let initialXPos = getPosition(50, browserWidth);
 			let initialYPos = getPosition(50, browserHeight);
-			let speed = (5 + Math.random() * 40);
 
 			// create our Snowflake object
 			let snowflakeObject = new Snowflake(
 				snowflakeClone,
-				speed,
 				initialXPos,
 				initialYPos
 			);
