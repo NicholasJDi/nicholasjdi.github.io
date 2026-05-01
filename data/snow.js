@@ -57,7 +57,7 @@
 			this.sign = Math.random() < 0.5 ? 1 : -1;
 
 			// setting an initial opacity and size for our snowflake
-			this.element.style.opacity = (0.1 + Math.random()) / 3;
+			this.element.style.opacity = 0.2 + Math.random() * 0.4;
 		}
 
 		// The function responsible for actually moving our snowflake
