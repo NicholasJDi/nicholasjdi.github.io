@@ -42,17 +42,17 @@
 	// Constructor for our Snowflake object
 	//
 	class Snowflake {
-		constructor(element, speed, xPos, yPos) {
+		constructor(element, xPos, yPos, speed, scale) {
 			// set initial snowflake properties
 			this.element = element;
 			this.xPos = xPos;
 			this.yPos = yPos;
+			this.speed = speed;
+			this.scale = scale;
 			
 			// declare variables used for snowflake's motion
 			this.initialX = xPos;
 			this.amplitude = 10 + Math.random() * 30;
-			this.scale = 0.2 + Math.random() * 0.8; // 0.2 → 1.0
-			this.speed = (10 + Math.random() * 30) * scale;
 			this.sign = Math.random() < 0.5 ? 1 : -1;
 			this.counter = 0;
 
@@ -118,12 +118,16 @@
 			// set our snowflake's initial position and related properties
 			let initialXPos = getPosition(50, browserWidth);
 			let initialYPos = getPosition(50, browserHeight);
+			let scale = 0.2 + Math.random() * 0.8;
+			let speed = (10 + Math.random() * 30) * scale;
 
 			// create our Snowflake object
 			let snowflakeObject = new Snowflake(
 				snowflakeClone,
 				initialXPos,
-				initialYPos
+				initialYPos,
+				speed,
+				scale
 			);
 			snowflakes.push(snowflakeObject);
 		}
