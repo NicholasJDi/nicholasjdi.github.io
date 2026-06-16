@@ -1,25 +1,26 @@
 body {
+	color: white;
+	font-family: Verdana, serif;
+	text-wrap: balance;
 	background-color: black;
 	background-image: url('/data/Background.png');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: center;
-	color: white;
-	font-family: Verdana, serif;
 	margin: 50px;
 }
 
 div {
 	background-color: rgba(0,0,0,0.5);
 	border: 5px ridge rgba(169, 169, 169, 0.7);
+	border-radius: 3px;
 	padding-left: 20px;
 	padding-right: 20px;
-	border-radius: 3px;
 }
 
 a {
-	transition: 0.2s;
+	transition: color 0.2s;
 }
 
 a:link{
@@ -38,14 +39,25 @@ a:active {
 	color: darkviolet;
 }
 
+img video {
+  max-width: 100%;
+  height: auto;
+}
+
 .spacer {
 	background-color: transparent;
 	display: flex;
+	border: none;
 	width: 100%;
 	height: 100%;
-	border: 0px;
 	padding: 10px;
 	justify-content: center;
+}
+
+.center {
+	text-align: center;
+	background-color: transparent;
+	border: none;
 }
 
 .giscus {
