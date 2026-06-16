@@ -39,8 +39,9 @@ a:active {
 	color: darkviolet;
 }
 
-img video {
+img, video, iframe {
   max-width: 100%;
+  width: auto;
   height: auto;
 }
 
