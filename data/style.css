@@ -41,7 +41,7 @@ a:active {
 
 img, video, iframe {
 	max-width: 100%;
-	width: auto;
+	width: none;
 	height: auto;
 	border: 2px outset rgba(169, 169, 169, 0.7);
 }
